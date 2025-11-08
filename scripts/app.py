@@ -1,0 +1,1 @@
+#TODO: limitar inputs de gradio según el tipo de propiedad elegido
