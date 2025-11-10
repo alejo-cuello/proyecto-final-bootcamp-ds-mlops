@@ -21,10 +21,10 @@ random_grid_n_iter = 10
 random_grid_cv = 3
 random_grid_rs = 42
 columns_to_drop = [
-    # "lat",
-    # "lon",
-    # "surface_uncovered",
-    # "available_publication",
+    "lat",
+    "lon",
+    "surface_uncovered",
+    "available_publication",
     # "rooms",
     # "bedrooms",
     # "bathrooms",
@@ -113,8 +113,7 @@ print("MAE:", round(mae_test, 2))
 print("R²:", round(r2_test, 4))
 
 for param in rf_random.best_params_:
-    mlflow.log_metric(param,rf_random.best_params_[param])
-    print(param)
+    mlflow.log_param("param_"+param,rf_random.best_params_[param])
 
 # MLFlow model params y metrics
 mlflow.log_metric("rmse_train",rmse_train)
