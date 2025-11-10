@@ -54,7 +54,7 @@ mlflow.log_param("columns_to_drop",", ".join(columns_to_drop))
 
 # Aclaración importante: tomaré solo el 20% del total de registros para entrenar los primeros modelos que me permitirán evaluar y seleccionar los mejores modelos y sus features correspondientes. El 20% es un porcentaje arbitrario que creo que es bastante representativo del total, y son bastantes registros.
 
-sample = data_encoded.sample(frac=0.2, random_state=42)
+sample = data_encoded.sample(frac=sample_frac, random_state=sample_rs)
 sample = sample.drop(columns=columns_to_drop)
 
 categoric_cols = sample.select_dtypes(["object","bool"]).columns
@@ -67,9 +67,9 @@ y_data = sample['price']
 x_data = x_data.values
 y_data = y_data.values
 
-x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.3, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=test_split_size, random_state=test_split_rs)
 
-model_rfr = RandomForestRegressor(random_state=42)
+model_rfr = RandomForestRegressor(random_state=model_rs)
 
 # Realizaré una randomized search acotada debido a que tengo muchos registros. Primero intenté hacer esto con todos los registros y con 100 iteraciones, pero resultó inviable el tiempo que estaba tardando en entrenar
 
@@ -82,7 +82,7 @@ random_grid = {
     'bootstrap': [False] # Al tener muchos registros, creo que el remuestreo es innecesario
 }
 
-rf_random = RandomizedSearchCV(estimator = model_rfr, param_distributions = random_grid, scoring="neg_mean_absolute_error", n_iter = 5, cv = 3, verbose=2, random_state=42, n_jobs = -1)
+rf_random = RandomizedSearchCV(estimator = model_rfr, param_distributions = random_grid, scoring="neg_mean_absolute_error", n_iter = random_grid_n_iter, cv = random_grid_cv, verbose=2, random_state=random_grid_rs, n_jobs = -1)
 
 rf_random.fit(x_train, y_train)
 
