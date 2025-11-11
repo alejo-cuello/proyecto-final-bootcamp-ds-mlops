@@ -1,5 +1,3 @@
-#TODO: limitar inputs de gradio según el tipo de propiedad elegido
-
 import gradio as gr
 import json
 import pandas as pd
@@ -13,23 +11,22 @@ PARAM_NAMES = {
     "surface_total",
     "surface_covered",
     "l2",
-    "property_type",
-    # "surface_uncovered",
-    # "available_type" #TODO: definir si la incluyo o no
+    "property_type"
 }
 
 # model_path = hf_hub_download(repo_id="alejo-cuello/bootcamp-ds-mlops-primer-ejercicio", filename="rf.pkl")
-# with open(model_path, "rb") as handle:
-#     model = pickle.load(handle) 
+model_path = "mlruns/512582443179615027/models/m-0248ec91bbc349f393da1c30e4f3fed1/artifacts/model.pkl"
 
-# with open("./model/categories_ohe.pkl", "rb") as handle:
-#     columns_ohe = pickle.load(handle)
+with open(model_path, "rb") as handle:
+    model = pickle.load(handle)
+    
+with open("notebooks/categories_ohe.pkl", "rb") as handle:
+    columns_ohe = pickle.load(handle)
 
-# with open("./model/min_max_input_values.json", "r") as handle:
-#     min_max_input_values = json.load(handle)
+with open("notebooks/min_max_input_values.json", "rb") as handle:
+    min_max_input_values = json.load(handle)
     
 def predict(*args):
-    # keys = ["Age", "Class", "Wifi", "Booking", "Seat", "Checkin"]
     keys = [
         "rooms",
         "bedrooms",
@@ -37,18 +34,24 @@ def predict(*args):
         "surface_total",
         "surface_covered",
         "l2",
-        "property_type"
+        "property_type",
+        # "lat",
+        # "lon"
     ]
-    # data_dict = dict(zip(keys, args))
+    
+    data_dict = dict(zip(keys, args))
+    single_instance = pd.DataFrame([data_dict])
+    
+    #TODO: Sería bueno mostrar un mapa para obtener del cliente una latitud y longitud. O sino hacer un modelo si estos inputs 
+    # De momento dejo hardcodeado un valor promedio
+    single_instance["lat"] =  -58.46
+    single_instance["lon"] =  -34.6
+    
+    single_instance_ohe = pd.get_dummies(single_instance,dtype="int64").reindex(columns=columns_ohe,fill_value=0)
+    print("ALE",single_instance_ohe.drop(columns=["property_type_Departamento","property_type_Local comercial","property_type_Oficina","property_type_PH"]))
+    prediction = model.predict(single_instance_ohe)
 
-    # single_instance = pd.DataFrame([data_dict])
-    # single_instance_ohe = pd.get_dummies(single_instance,dtype="int64").reindex(columns=columns_ohe,fill_value=0)
-
-    prediction = 100 #TODO: Borrar
-    # prediction = model.predict(single_instance_ohe)
-
-    # return ("Satisfecho" if prediction == 1 else "No Satisfecho")
-    return f"U$D {prediction}"
+    return f"U$D {round(prediction[0],2)}"
 
 with gr.Blocks() as demo:
     gr.Markdown(
@@ -71,25 +74,26 @@ with gr.Blocks() as demo:
                 ### Ambientes
                 """
             )
+            #TODO: Se podrían mostrar cantidades de ambientes condicionales al tipo de propiedad seleccionado
             rooms = gr.Slider(
                 label="Cantidad de ambientes",
-                minimum=1,
-                maximum=2,
-                value=1,
+                minimum=min_max_input_values["rooms"]["Min"],
+                maximum=min_max_input_values["rooms"]["Max"],
+                value=min_max_input_values["rooms"]["Min"],
                 step=1
             )
             bedrooms = gr.Slider(
                 label="Cantidad de dormitorios",
-                minimum=1,
-                maximum=2,
-                value=1,
+                minimum=min_max_input_values["bedrooms"]["Min"],
+                maximum=min_max_input_values["bedrooms"]["Max"],
+                value=min_max_input_values["bedrooms"]["Min"],
                 step=1
             )
             bathrooms = gr.Slider(
                 label="Cantidad de baños",
-                minimum=1,
-                maximum=2,
-                value=1,
+                minimum=min_max_input_values["bathrooms"]["Min"],
+                maximum=min_max_input_values["bathrooms"]["Max"],
+                value=min_max_input_values["bathrooms"]["Min"],
                 step=1
             )
         with gr.Column():
@@ -128,17 +132,17 @@ with gr.Blocks() as demo:
                 """
             )
             surface_total = gr.Slider(
-                label="Superficie total",
-                minimum=1,
-                maximum=2,
-                value=1,
+                label="Superficie total (m2)",
+                minimum=min_max_input_values["surface_total"]["Min"],
+                maximum=min_max_input_values["surface_total"]["Max"],
+                value=min_max_input_values["surface_total"]["Min"],
                 step=1
             )
             surface_covered = gr.Slider(
-                label="Superficie cubierta",
-                minimum=1,
-                maximum=2,
-                value=1,
+                label="Superficie cubierta (m2)",
+                minimum=min_max_input_values["surface_covered"]["Min"],
+                maximum=min_max_input_values["surface_covered"]["Max"],
+                value=min_max_input_values["surface_covered"]["Min"],
                 step=1
             )
             
@@ -156,13 +160,13 @@ with gr.Blocks() as demo:
             prediction_btn.click(
                 predict,
                 inputs=[
-                    l2,
-                    property_type,
                     rooms,
                     bedrooms,
                     bathrooms,
                     surface_total,
-                    surface_covered
+                    surface_covered,
+                    l2,
+                    property_type,
                 ],
                 outputs=label,
                 api_name="predict"
