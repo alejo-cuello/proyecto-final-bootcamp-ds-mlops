@@ -14,31 +14,32 @@ mlflow.set_experiment(experiment_name="baseline-model-rfr")
 
 sample_frac = 0.2
 sample_rs = 42 # rs = random_state
-test_split_size = 0.3
+test_split_size = 0.2
 test_split_rs = 42
 model_rs = 42
 random_grid_n_iter = 10
 random_grid_cv = 3
 random_grid_rs = 42
+max_price = 390500
 columns_to_drop = [
-    "lat",
-    "lon",
+    # "lat",
+    # "lon",
     "surface_uncovered",
     "available_publication",
+    "days_since_start",
+    "days_since_end",
     # "rooms",
     # "bedrooms",
     # "bathrooms",
     # "surface_total",
     # "surface_covered",
     # "price",
-    # "days_since_start",
-    # "days_since_end",
     # "l2_Bs.As. G.B.A. Zona Oeste",
     # "l2_Bs.As. G.B.A. Zona Sur",
     # "l2_Capital Federal",
     # "property_type_Departamento",
-    # "property_type_Local comercial",
-    # "property_type_Oficina",
+    "property_type_Local comercial",
+    "property_type_Oficina",
     # "property_type_PH"
 ]
 
@@ -50,16 +51,14 @@ mlflow.log_param("model_rs",model_rs)
 mlflow.log_param("random_grid_n_iter",random_grid_n_iter)
 mlflow.log_param("random_grid_cv",random_grid_cv)
 mlflow.log_param("random_grid_rs",random_grid_rs)
+mlflow.log_param("max_price",max_price)
 mlflow.log_param("columns_to_drop",", ".join(columns_to_drop))
 
 # Aclaración importante: tomaré solo el 20% del total de registros para entrenar los primeros modelos que me permitirán evaluar y seleccionar los mejores modelos y sus features correspondientes. El 20% es un porcentaje arbitrario que creo que es bastante representativo del total, y son bastantes registros.
 
 sample = data_encoded.sample(frac=sample_frac, random_state=sample_rs)
+sample = sample[sample["price"] < max_price]
 sample = sample.drop(columns=columns_to_drop)
-
-categoric_cols = sample.select_dtypes(["object","bool"]).columns
-for col in categoric_cols:
-    sample[col] = sample[col].astype('category')
 
 x_data = sample.drop('price', axis=1)
 y_data = sample['price']
@@ -128,44 +127,3 @@ mlflow.log_metric("r2_test",r2_test)
 #     sk_model=rf_random,
 #     name="baseline-model-rfr"
 # )
-
-# Dejo código comentado que podría servirme más adelante
-
-# param_grid = {
-#     'bootstrap': [True], # Base: True
-#     'max_depth': [40, 50, 60, 70, 80], # Base: 60
-#     'max_features': [1.0], # Base: 1.0
-#     'min_samples_leaf': [1, 2, 3], # Base: 1
-#     'min_samples_split': [2, 3, 4], # Base: 2
-#     'n_estimators': [700, 750, 800] # Base: 733
-# }
-
-# grid_search = GridSearchCV(estimator = model_rfr, param_grid = param_grid, scoring = 'neg_mean_absolute_error', cv = 3, n_jobs = -1, verbose = 2)
-
-# grid_search.fit(x_train, y_train)
-
-# print("RandomizerSearch: Mejor combinación")
-# print("Score en Train: " + str(rf_random.score(x_train, y_train)))
-# print("Score en Test: " + str(rf_random.score(x_test, y_test)))
-# print()
-# print("GridSearch: Mejor combinación")
-# print("Score en Train: " + str(grid_search.score(x_train, y_train)))
-# print("Score en Test: " + str(grid_search.score(x_test, y_test)))
-
-# vis_pred_err = PredictionError(rf_random)
-
-# vis_pred_err.fit(x_train, y_train)  # Fiteamos los datos al visualizador
-# vis_pred_err.score(x_test, y_test)  # Calculamos las métricas para test
-# vis_pred_err.show()                 # Visualizamos!
-
-# vis_res = ResidualsPlot(rf_random)
-
-# # Copy-paste de la doc oficial: 
-# vis_res.fit(x_train, y_train)  # Fiteamos los datos al visualizador
-# vis_res.score(x_test, y_test)  # Calculamos las métricas para test
-
-# plt.xticks(rotation=90)                # rotamos etiquetas eje x
-
-# vis_res.show()                 # Visualizamos!
-
-
