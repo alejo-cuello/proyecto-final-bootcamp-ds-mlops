@@ -1,0 +1,78 @@
+{
+    "lat": {
+        "Min": -59.0423996,
+        "Max": -57.8305701
+    },
+    "lon": {
+        "Min": -35.05744934,
+        "Max": -34.286049
+    },
+    "rooms": {
+        "Min": 1,
+        "Max": 8
+    },
+    "bedrooms": {
+        "Min": 0,
+        "Max": 6
+    },
+    "bathrooms": {
+        "Min": 1,
+        "Max": 4
+    },
+    "surface_total": {
+        "Min": 10.0,
+        "Max": 254.0
+    },
+    "surface_covered": {
+        "Min": 1.0,
+        "Max": 219.0
+    },
+    "price": {
+        "Min": 6000.0,
+        "Max": 460161.0
+    },
+    "days_since_start": {
+        "Min": 1932,
+        "Max": 2321
+    },
+    "days_since_end": {
+        "Min": 1872.0,
+        "Max": 2320.0
+    },
+    "surface_uncovered": {
+        "Min": -9.0,
+        "Max": 35.0
+    },
+    "available_publication": {
+        "Min": false,
+        "Max": true
+    },
+    "l2_Bs.As. G.B.A. Zona Oeste": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l2_Bs.As. G.B.A. Zona Sur": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l2_Capital Federal": {
+        "Min": 0,
+        "Max": 1
+    },
+    "property_type_Departamento": {
+        "Min": 0,
+        "Max": 1
+    },
+    "property_type_Local comercial": {
+        "Min": 0,
+        "Max": 1
+    },
+    "property_type_Oficina": {
+        "Min": 0,
+        "Max": 1
+    },
+    "property_type_PH": {
+        "Min": 0,
+        "Max": 1
+    }
+}
