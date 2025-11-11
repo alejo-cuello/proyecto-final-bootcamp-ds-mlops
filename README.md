@@ -107,7 +107,7 @@ La clave para gestionar esta serie de experimentos y ajustes —que me hicieron 
 - Se podría probar la agrupación de variables categóricas que se mantuvieron en consideración pero que cuentan con pocos registros.
 - También sería útil normalizar las distintas variables; por ejemplo, la superficie suele ser un número muchísimo mayor que la cantidad de ambientes, y normalizarlas podría mejorar el rendimiento.
 - Para entender la influencia real de cada factor, una mejora clave sería utilizar Shap para evaluar el peso de las variables en el modelo.
-- Además, sumaría información el análisis visual de la distribución del error de los residuos del modelo, junto con el análisis de la curva ROC respecto a los datos de train y test.
+- Además, sumaría información el análisis visual de la distribución del error de los residuos del modelo.
 - Otro punto crucial es refinar el preprocesamiento; se sugiere variar el orden en que se ejecutaron las imputaciones, la detección de outliers y el llenado de nulos para observar cómo varía el resultado.
 - Además, para capturar dinámicas más complejas, se podría analizar la relación no lineal entre las variables, quizás mediante el uso de MIC.
 - También sería útil analizar gráficamente las correlaciones y medir la correlación de las variables categóricas utilizando encoding.
