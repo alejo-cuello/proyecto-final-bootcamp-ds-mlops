@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/dc68c7464bfb4aa8876f3733a6b51c8b/artifacts
+end_time: 1762774886035
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: dc68c7464bfb4aa8876f3733a6b51c8b
+run_name: adorable-bear-907
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762774847245
+status: 3
+tags: []
+user_id: alejo

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/c64dafc1b9fb49daadabf729128e6d56/artifacts
+end_time: 1762817876556
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: c64dafc1b9fb49daadabf729128e6d56
+run_name: efficient-stag-7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762817875963
+status: 3
+tags: []
+user_id: alejo

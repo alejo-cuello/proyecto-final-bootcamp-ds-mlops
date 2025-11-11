@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/models/m-0248ec91bbc349f393da1c30e4f3fed1/artifacts
+creation_timestamp: 1762824107640
+experiment_id: '512582443179615027'
+last_updated_timestamp: 1762824125371
+model_id: m-0248ec91bbc349f393da1c30e4f3fed1
+model_type: null
+name: rfr
+source_run_id: 7a3a81aa042143db9b44c21c6e4286c9
+status: 2
+status_message: null

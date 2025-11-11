@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/54b485e549ab4d4ca377d6216af3031f/artifacts
+end_time: 1762821735567
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: active
+run_id: 54b485e549ab4d4ca377d6216af3031f
+run_name: fortunate-foal-998
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762821644768
+status: 3
+tags: []
+user_id: alejo

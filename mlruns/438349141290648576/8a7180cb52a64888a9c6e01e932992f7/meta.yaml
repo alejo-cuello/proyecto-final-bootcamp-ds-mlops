@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/8a7180cb52a64888a9c6e01e932992f7/artifacts
+end_time: 1762778713907
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: 8a7180cb52a64888a9c6e01e932992f7
+run_name: respected-cub-932
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762778678285
+status: 3
+tags: []
+user_id: alejo

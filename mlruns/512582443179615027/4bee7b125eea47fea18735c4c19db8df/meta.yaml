@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/4bee7b125eea47fea18735c4c19db8df/artifacts
+deleted_time: 1762821014284
+end_time: 1762820736650
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: deleted
+run_id: 4bee7b125eea47fea18735c4c19db8df
+run_name: hilarious-hawk-294
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762820719923
+status: 3
+tags: []
+user_id: alejo

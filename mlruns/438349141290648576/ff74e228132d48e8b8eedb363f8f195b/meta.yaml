@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/ff74e228132d48e8b8eedb363f8f195b/artifacts
+end_time: 1762818248961
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: ff74e228132d48e8b8eedb363f8f195b
+run_name: redolent-chimp-985
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762818198916
+status: 3
+tags: []
+user_id: alejo

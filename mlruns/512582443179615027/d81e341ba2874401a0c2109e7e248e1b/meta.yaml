@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/d81e341ba2874401a0c2109e7e248e1b/artifacts
+end_time: 1762821152178
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: active
+run_id: d81e341ba2874401a0c2109e7e248e1b
+run_name: able-gull-764
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762821053055
+status: 3
+tags: []
+user_id: alejo

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/97d5d0795a40433badcf92fdd59454c5/artifacts
+deleted_time: 1762819475210
+end_time: 1762818640277
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: deleted
+run_id: 97d5d0795a40433badcf92fdd59454c5
+run_name: stylish-dog-884
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762818609711
+status: 3
+tags: []
+user_id: alejo

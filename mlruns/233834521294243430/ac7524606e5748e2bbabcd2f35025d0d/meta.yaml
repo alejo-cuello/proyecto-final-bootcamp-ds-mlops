@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/ac7524606e5748e2bbabcd2f35025d0d/artifacts
+end_time: 1762816383571
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: ac7524606e5748e2bbabcd2f35025d0d
+run_name: upbeat-conch-436
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762816383044
+status: 3
+tags: []
+user_id: alejo

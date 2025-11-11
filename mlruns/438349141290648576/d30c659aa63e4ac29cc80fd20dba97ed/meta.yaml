@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/d30c659aa63e4ac29cc80fd20dba97ed/artifacts
+end_time: 1762774805407
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: d30c659aa63e4ac29cc80fd20dba97ed
+run_name: honorable-rook-272
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762774738810
+status: 3
+tags: []
+user_id: alejo

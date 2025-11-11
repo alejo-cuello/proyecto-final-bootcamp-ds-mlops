@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/8d39d5536ac54d60857f6d2a512c147d/artifacts
+end_time: 1762816421089
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: 8d39d5536ac54d60857f6d2a512c147d
+run_name: debonair-skink-718
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762816420499
+status: 3
+tags: []
+user_id: alejo

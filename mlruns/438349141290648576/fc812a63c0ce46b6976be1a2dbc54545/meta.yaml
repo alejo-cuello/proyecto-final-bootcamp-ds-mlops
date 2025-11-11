@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/fc812a63c0ce46b6976be1a2dbc54545/artifacts
+deleted_time: 1762820097175
+end_time: 1762820059280
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: deleted
+run_id: fc812a63c0ce46b6976be1a2dbc54545
+run_name: dazzling-bear-127
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762820027667
+status: 3
+tags: []
+user_id: alejo

@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027
+creation_time: 1762816509242
+experiment_id: '512582443179615027'
+last_update_time: 1762816509242
+lifecycle_stage: active
+name: gridsearchcv-model-rfr

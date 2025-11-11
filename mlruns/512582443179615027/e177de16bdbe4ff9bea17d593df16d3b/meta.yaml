@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/e177de16bdbe4ff9bea17d593df16d3b/artifacts
+deleted_time: 1762824037506
+end_time: 1762823874899
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: deleted
+run_id: e177de16bdbe4ff9bea17d593df16d3b
+run_name: rumbling-seal-512
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762823832243
+status: 3
+tags: []
+user_id: alejo

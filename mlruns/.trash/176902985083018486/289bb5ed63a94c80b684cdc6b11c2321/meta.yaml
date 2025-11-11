@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/176902985083018486/289bb5ed63a94c80b684cdc6b11c2321/artifacts
+deleted_time: 1762777069617
+end_time: 1762776965352
+entry_point_name: ''
+experiment_id: '176902985083018486'
+lifecycle_stage: deleted
+run_id: 289bb5ed63a94c80b684cdc6b11c2321
+run_name: sincere-bird-115
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762776965205
+status: 3
+tags: []
+user_id: alejo

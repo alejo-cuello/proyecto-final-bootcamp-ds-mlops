@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/4078d129a4204c99a6ed194e7614505a/artifacts
+end_time: 1762819391638
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: 4078d129a4204c99a6ed194e7614505a
+run_name: chill-calf-817
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762819360011
+status: 3
+tags: []
+user_id: alejo

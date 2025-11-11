@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/052e92e21ea244089711d86aa31d6631/artifacts
+end_time: 1762818008389
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: 052e92e21ea244089711d86aa31d6631
+run_name: melodic-bug-889
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762818007926
+status: 3
+tags: []
+user_id: alejo
