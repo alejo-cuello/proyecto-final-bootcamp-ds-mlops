@@ -3,21 +3,35 @@ Proyecto final del Bootcamp de Data Science y MLOps, dictado por Escuela de Dato
 
 ## 📊 **Parte 1 — EDA y Preparación de Datos**
 
-*   **Conclusiones de negocio y Storytelling**: ver en la sección *Conclusiones de negocio* más abajo
-*   **Código y comentarios:** ver el archivo notebooks/01-eda.ipynb
+**Conclusiones de negocio y Storytelling**
+
+Ver en la sección *Conclusiones de negocio* más abajo
+
+
+**Código y comentarios:**
+
+Ver el archivo notebooks/01-eda.ipynb
 
 ## 🤖 **Parte 2 — Modelado y Evaluación**
 
-*   **Notebook de modelado:** 
-- Ver los scripts dentro de la carpeta *scripts/models*. Para una mayor explicación del proceso de modelado, consultar la sección *Explicación del proceso de modelado de datos* de este archivo.
-*   **Insights del modelo:**:
-- Las variables seleccionadas para entrenar el modelo influyeron en la precisión del mismo, pero no tanto como el límite que se establezca para el precio de los registros a utilizar en el modelo.
-- Randomized Search ofrece un modelo con bajo error en train, pero no garantiza que el error sea similar en test. Por lo tanto, busqué modelos más estables mediante GridSearchCV, que tengan un error un poco más alto en train, pero más cercano al error de test.  
-*   **Justificación de variables:**
--   Descarté las variables "available_publication", "days_since_start", "days_since_end" porque no están correlacionadas con el precio. Además, un usuario siempre consultará por propiedades que estén disponibles.
-- También descarté "surface_uncovered", ya que se obtiene a partir de la resta entre superficie total y la cubierta, siendo estas más comunes a la hora de consultar por una propiedad.
-*   **Exportación del modelo:**
-- El modelo fue exportado mediante MLFlow. Puede encontrarse en la carpeta *mlruns/512582443179615027/models/m-0248ec91bbc349f393da1c30e4f3fed1/artifacts/model.pkl* 
+**Notebook de modelado:** 
+
+Ver los scripts dentro de la carpeta *scripts/models*. Para una mayor explicación del proceso de modelado, consultar la sección *Explicación del proceso de modelado de datos* de este archivo.
+**Insights del modelo:**:
+
+1- Las variables seleccionadas para entrenar el modelo influyeron en la precisión del mismo, pero no tanto como el límite que se establezca para el precio de los registros a utilizar en el modelo.
+
+2- Randomized Search ofrece un modelo con bajo error en train, pero no garantiza que el error sea similar en test. Por lo tanto, busqué modelos más estables mediante GridSearchCV, que tengan un error un poco más alto en train, pero más cercano al error de test.  
+
+**Justificación de variables:**
+
+Descarté las variables "available_publication", "days_since_start", "days_since_end" porque no están correlacionadas con el precio. Además, un usuario siempre consultará por propiedades que estén disponibles.
+
+También descarté "surface_uncovered", ya que se obtiene a partir de la resta entre superficie total y la cubierta, siendo estas más comunes a la hora de consultar por una propiedad.
+
+**Exportación del modelo:**
+
+El modelo fue exportado mediante MLFlow. Puede encontrarse en la carpeta *mlruns/512582443179615027/models/m-0248ec91bbc349f393da1c30e4f3fed1/artifacts/model.pkl* 
 
 ## 🖥️ **Parte 3 — Interfaz con Gradio y Deploy en Hugging Face Spaces**
 
@@ -25,14 +39,15 @@ El principal desafío al construir la interface fue la gestión de las variables
 
 Opté por guardar previamente los valores mínimos y máximos admitidos para cada columna, limitando al usuario a ingresar inputs adecuados. Sin embargo, se nota que si se ingresan valores poco razonables en cuanto a la proporción de habitaciones o superficies, la proyección de precio suele estancarse ignorando la zona o el tipo de propiedad. Esto subraya la necesidad de limitar la proporción entre los valores de entrada del usuario.
 
-*   **Url del Hugging Face Space:** 
+**Url del Hugging Face Space:** 
+
 https://huggingface.co/spaces/alejo-cuello/proyecto-final-bootcamp-ds-mlops
 
-*   **Aplicación en funcionamiento:**
+**Aplicación en funcionamiento:**
 
 ![Pantalla principal de la app](assets/app-gradio-propia.png)
 
-*   **Uso del endpoint proporcionado:**
+**Uso del endpoint proporcionado:**
 
 ![Api de gradio](assets/app-gradio-api.png)
 
