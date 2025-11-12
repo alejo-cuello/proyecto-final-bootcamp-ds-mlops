@@ -18,7 +18,7 @@ Ver el archivo notebooks/01-eda.ipynb
 
 Ver los scripts dentro de la carpeta *scripts/models*. Para una mayor explicación del proceso de modelado, consultar la sección *Explicación del proceso de modelado de datos* de este archivo.
 
-### **Insights del modelo:**:
+### **Insights del modelo:**
 
 1- Las variables seleccionadas para entrenar el modelo influyeron en la precisión del mismo, pero no tanto como el límite que se establezca para el precio de los registros a utilizar en el modelo.
 
