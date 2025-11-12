@@ -114,11 +114,10 @@ La clave para gestionar esta serie de experimentos y ajustes —que me hicieron 
 - También sería útil analizar gráficamente las correlaciones y medir la correlación de las variables categóricas utilizando encoding.
 
 ### 🔹Definición con la gente del negocio:
+
+Se subraya la importancia de poseer un criterio sólido y conocimiento del negocio inmobiliario durante todo el proceso. Este conocimiento es una gran ayuda a la hora de analizar los datos, permitiendo identificar qué variables tienen más potencial de influir en el precio. Esto orienta significativamente tanto el análisis exploratorio como la limpieza de los datos.
+
 Entiendo que sería importante negociar el rendimiento del modelo con los stakeholders o la gente de negocio. No se trata solo de minimizar el error técnico, sino de evaluar qué error es aceptable y qué alcance tendrá la predicción. Es crucial saber negociar qué se puede predecir con el modelo en función del error máximo admitido.
 
 La exclusión de los outliers de precios muy elevados demostró ser una decisión que redefinió el alcance del modelo, ya que generaban mucho sesgo en la predicción.
 Al ser pocas las casas muy grandes y caras, lo más sensato fue dejarlas por fuera para limitar la predicción a casas y departamentos más comunes. Esto requiere definir con el negocio si ese error y ese límite en el alcance son aceptables.
-
-Se subrayó la importancia de poseer un criterio sólido y conocimiento del negocio inmobiliario durante todo el proceso. Este conocimiento es una gran ayuda a la hora de analizar los datos, permitiendo identificar qué variables tienen más potencial de influir en el precio. Esto orienta significativamente tanto el análisis exploratorio como la limpieza de los datos.
-
-Otro punto vital es que, aunque se realice una primera limpieza de datos con buen criterio, los resultados del modelo pueden no ser los esperados, obligando a volver hacia atrás en el proceso.
