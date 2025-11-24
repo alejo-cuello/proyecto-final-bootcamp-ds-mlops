@@ -48,7 +48,6 @@ def predict(*args):
     single_instance["lon"] =  -34.6
     
     single_instance_ohe = pd.get_dummies(single_instance,dtype="int64").reindex(columns=columns_ohe,fill_value=0)
-    print("ALE",single_instance_ohe.drop(columns=["property_type_Departamento","property_type_Local comercial","property_type_Oficina","property_type_PH"]))
     prediction = model.predict(single_instance_ohe)
 
     return f"U$D {round(prediction[0],2)}"
