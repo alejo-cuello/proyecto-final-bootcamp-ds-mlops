@@ -56,6 +56,9 @@ https://huggingface.co/spaces/alejo-cuello/proyecto-final-bootcamp-ds-mlops
 - Para agilizar el entrenamiento de modelos ante datasets tan grandes, el muestreo es una buena opción, siempre que sea una proporción representativa del total.
 - El proyecto enseñó la relevancia de la automatización: se aprendió a realizar el tracking de las pruebas con MLflow, lo cual fue muy útil. Esto permitió parametrizar fácilmente las distintas corridas ejecutadas, teniendo a simple vista todos los resultados de hiperparámetros y scores.
 
+## ➕ Esto no termina acá:
+Posterior a la entrega solicitada en el Bootcamp, comencé a implementar el despliegue del modelo en AWS.
+
 ## Anexo:
 
 ### 🔹 Conclusiones de negocio
