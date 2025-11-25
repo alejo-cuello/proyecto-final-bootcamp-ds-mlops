@@ -55,7 +55,7 @@ def predict_price(answer: Answer):
  
     score = round(prediction[0],2)
     
-    response = {"score": score}
+    response = {"Price_in_USD": score}
     
     return response
 
