@@ -14,7 +14,7 @@ SCRIPT_DIR = os.path.dirname(CURRENT_FILE)
 ONE_LEVEL_UP = os.path.dirname(SCRIPT_DIR)
 ROOT_DIR = os.path.dirname(ONE_LEVEL_UP)
 
-MODEL_PATH = os.path.join(ROOT_DIR, "mlruns","512582443179615027","models","m-0248ec91bbc349f393da1c30e4f3fed1","artifacts","model.pkl")
+MODEL_PATH = os.path.join(SCRIPT_DIR, "model", "model.pkl")
 CATEGORIES_OHE_PATH = os.path.join(ROOT_DIR, "notebooks", "categories_ohe.pkl")
 
 with open(MODEL_PATH, "rb") as f:
