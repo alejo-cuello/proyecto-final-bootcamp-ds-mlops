@@ -1,0 +1,14 @@
+assets
+consigna
+data
+mlruns
+notebooks
+scripts
+.env
+.gitattributes
+.gitignore
+comandos.txt
+LICENSE
+README.md
+requirements.txt
+extras/aws

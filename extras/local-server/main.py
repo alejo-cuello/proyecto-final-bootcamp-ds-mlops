@@ -11,11 +11,9 @@ app = FastAPI()
 
 CURRENT_FILE = os.path.abspath(__file__)
 SCRIPT_DIR = os.path.dirname(CURRENT_FILE)
-ONE_LEVEL_UP = os.path.dirname(SCRIPT_DIR)
-ROOT_DIR = os.path.dirname(ONE_LEVEL_UP)
 
-MODEL_PATH = os.path.join(SCRIPT_DIR, "model", "model.pkl")
-CATEGORIES_OHE_PATH = os.path.join(ROOT_DIR, "notebooks", "categories_ohe.pkl")
+MODEL_PATH = os.path.join(SCRIPT_DIR, "model", "rf-final-model.pkl")
+CATEGORIES_OHE_PATH = os.path.join(SCRIPT_DIR, "model", "categories-ohe.pkl")
 
 with open(MODEL_PATH, "rb") as f:
     model = pickle.load(f)
@@ -61,4 +59,4 @@ def predict_price(answer: Answer):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
