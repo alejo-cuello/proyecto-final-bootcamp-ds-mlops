@@ -1,3 +1,4 @@
-comandos.txt
 .venv
-# mlruns
+.env
+comandos.txt
+rf_model.tar.gz
