@@ -11,10 +11,10 @@ PARAM_NAMES = {
     "surface_total",
     "surface_covered",
     "l2",
+    "l3",
     "property_type"
 }
 
-# model_path = hf_hub_download(repo_id="alejo-cuello/bootcamp-ds-mlops-primer-ejercicio", filename="rf.pkl")
 model_path = "mlruns/512582443179615027/models/m-0248ec91bbc349f393da1c30e4f3fed1/artifacts/model.pkl"
 
 with open(model_path, "rb") as handle:
@@ -25,6 +25,9 @@ with open("notebooks/categories_ohe.pkl", "rb") as handle:
 
 with open("notebooks/min_max_input_values.json", "rb") as handle:
     min_max_input_values = json.load(handle)
+
+with open("notebooks/l3_by_l2.json", "rb") as handle:
+    l3_by_l2 = json.load(handle)
     
 def predict(*args):
     keys = [
@@ -34,24 +37,55 @@ def predict(*args):
         "surface_total",
         "surface_covered",
         "l2",
+        "l3",
         "property_type",
-        # "lat",
-        # "lon"
+        # "lat", # Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+        # "lon" # Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
     ]
     
     data_dict = dict(zip(keys, args))
     single_instance = pd.DataFrame([data_dict])
-    
-    #TODO: Sería bueno mostrar un mapa para obtener del cliente una latitud y longitud. O sino hacer un modelo si estos inputs 
-    # De momento dejo hardcodeado un valor promedio
-    single_instance["lat"] =  -58.46
-    single_instance["lon"] =  -34.6
     
     single_instance_ohe = pd.get_dummies(single_instance,dtype="int64").reindex(columns=columns_ohe,fill_value=0)
     print("ALE",single_instance_ohe.drop(columns=["property_type_Departamento","property_type_Local comercial","property_type_Oficina","property_type_PH"]))
     prediction = model.predict(single_instance_ohe)
 
     return f"U$D {round(prediction[0],2)}"
+
+def update_l3_selector(l2):
+
+    if l2 is None:
+        return gr.Dropdown(
+            label="Barrio",
+            choices=[],
+            value=None,
+            multiselect=False
+        )
+
+    return gr.Dropdown(
+        label="Barrio",
+        choices=l3_by_l2[l2],
+        value=l3_by_l2[l2][0],
+        multiselect=False
+    )
+
+def update_surface_covered(max_total):
+    if max_total is None:
+        return gr.Slider(
+            label="Superficie cubierta (m2)",
+            minimum=min_max_input_values["surface_covered"]["Min"],
+            maximum=min_max_input_values["surface_covered"]["Max"],
+            value=min_max_input_values["surface_covered"]["Min"],
+            step=1
+        )
+
+    return gr.Slider(
+        label="Superficie cubierta (m2)",
+        minimum=min_max_input_values["surface_covered"]["Min"],
+        maximum=max_total,
+        value=min_max_input_values["surface_covered"]["Min"],
+        step=1
+    )
 
 with gr.Blocks() as demo:
     gr.Markdown(
@@ -68,6 +102,41 @@ with gr.Blocks() as demo:
                 """
             )
     with gr.Row():
+        with gr.Column():
+            gr.Markdown(
+                """
+                ### Tipo y zona
+                """
+            )
+            property_type = gr.Dropdown(
+                label="Tipo de propiedad",
+                choices=[
+                    "Departamento",
+                    "Casa",
+                    "PH",
+                    "Oficina",
+                    "Local comercial"
+                ],
+                value="Departamento",
+                multiselect=False
+            )    
+            l2 = gr.Dropdown(
+                label="Zona",
+                choices=list(l3_by_l2.keys()),
+                value="Capital Federal",
+                multiselect=False
+            )
+            l3 = gr.Dropdown(
+                label="Barrio",
+                choices=l3_by_l2["Capital Federal"],
+                value=l3_by_l2["Capital Federal"][0],
+                multiselect=False
+            )
+            l2.change(
+                fn=update_l3_selector,
+                inputs=l2,
+                outputs=l3
+            )
         with gr.Column():
             gr.Markdown(
                 """
@@ -99,35 +168,6 @@ with gr.Blocks() as demo:
         with gr.Column():
             gr.Markdown(
                 """
-                ### Tipo y zona
-                """
-            )
-            property_type = gr.Dropdown(
-                label="Tipo de propiedad",
-                choices=[
-                    "Departamento",
-                    "Casa",
-                    "PH",
-                    "Oficina",
-                    "Local comercial"
-                ],
-                value="Departamento",
-                multiselect=False
-            )    
-            l2 = gr.Dropdown(
-                label="Zona",
-                choices=[
-                    "Capital Federal",
-                    "Bs.As. G.B.A. Zona Norte",
-                    "Bs.As. G.B.A. Zona Sur",
-                    "Bs.As. G.B.A. Zona Oeste"
-                ],
-                value="Capital Federal",
-                multiselect=False
-            )
-        with gr.Column():
-            gr.Markdown(
-                """
                 ### Superficie
                 """
             )
@@ -144,6 +184,11 @@ with gr.Blocks() as demo:
                 maximum=min_max_input_values["surface_covered"]["Max"],
                 value=min_max_input_values["surface_covered"]["Min"],
                 step=1
+            )
+            surface_total.change(
+                fn=update_surface_covered,
+                inputs=surface_total,
+                outputs=surface_covered
             )
             
     with gr.Row():
@@ -166,6 +211,7 @@ with gr.Blocks() as demo:
                     surface_total,
                     surface_covered,
                     l2,
+                    l3,
                     property_type,
                 ],
                 outputs=label,
