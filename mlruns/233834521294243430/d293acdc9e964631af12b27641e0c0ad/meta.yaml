@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/d293acdc9e964631af12b27641e0c0ad/artifacts
+deleted_time: 1764803437314
+end_time: 1764803041562
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: deleted
+run_id: d293acdc9e964631af12b27641e0c0ad
+run_name: bold-hound-20
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764803041280
+status: 3
+tags: []
+user_id: alejo

@@ -1,3 +1,4 @@
+import json
 import mlflow.sklearn
 import numpy as np
 import pandas as pd
@@ -8,6 +9,9 @@ from sklearn.model_selection import train_test_split
 
 data_encoded = pd.read_csv("data/03-encoded-properati.csv", sep=',', index_col=0)
 
+with open("notebooks/price_by_quantile.json", "rb") as handle:
+    price_by_quantile = json.load(handle)
+
 # MLFlow: Variables a setear para cada corrida del experimento
 
 mlflow.set_experiment(experiment_name="baseline-model-lr")
@@ -15,14 +19,15 @@ mlflow.set_experiment(experiment_name="baseline-model-lr")
 test_split_size = 0.3
 test_split_rs = 42
 model_rs = 42
-na_values_processing = "drop" # False, "fill", "drop"
-max_price = 390611
+na_values_processing = False # False, "fill", "drop": útil solo cuando NO se excluyen las variables lat y lon
+filter_price_by_quantile = None # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
+max_price = price_by_quantile[filter_price_by_quantile] if filter_price_by_quantile is not None else None
+with_l3_feature = True
 columns_to_drop = [
-    # "lat",
-    # "lon",
+    "lat", # Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+    "lon", # Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
     "days_since_start",
     "days_since_end",
-    # "surface_uncovered",
     # "available_publication",
     # "rooms",
     # "bedrooms",
@@ -43,28 +48,32 @@ mlflow.log_param("test_split_size",test_split_size)
 mlflow.log_param("test_split_rs",test_split_rs)
 mlflow.log_param("model_rs",model_rs)
 mlflow.log_param("na_values_processing",na_values_processing)
+mlflow.log_param("filter_price_by_quantile",filter_price_by_quantile)
 mlflow.log_param("max_price",max_price)
+mlflow.log_param("with_l3_feature",with_l3_feature)
 mlflow.log_param("columns_to_drop",", ".join(columns_to_drop))
 
 data_encoded = data_encoded.drop(columns=columns_to_drop)
-data_encoded = data_encoded[data_encoded["price"] < max_price]
 
-if na_values_processing == "fill":
-    condition_for_filling = data_encoded["lat"].isna() | data_encoded["lon"].notna()
-    lat_mean = data_encoded["lat"].mean()
-    lon_mean = data_encoded["lon"].mean()
-    
-    data_encoded["lat"] = data_encoded["lat"].mask(
-        condition_for_filling,
-        lat_mean
-    )
-    data_encoded["lon"] = data_encoded["lon"].mask(
-        condition_for_filling,
-        lon_mean
-    )
-elif na_values_processing == "drop":
-    data_encoded = data_encoded[data_encoded["lat"].notna()]
-    print(data_encoded.shape)
+if max_price is not None:
+    data_encoded = data_encoded[data_encoded["price"] < max_price]
+
+if "lat" not in columns_to_drop and "lon" not in columns_to_drop:
+    if na_values_processing == "fill":
+        condition_for_filling = data_encoded["lat"].isna() | data_encoded["lon"].notna()
+        lat_mean = data_encoded["lat"].mean()
+        lon_mean = data_encoded["lon"].mean()
+        
+        data_encoded["lat"] = data_encoded["lat"].mask(
+            condition_for_filling,
+            lat_mean
+        )
+        data_encoded["lon"] = data_encoded["lon"].mask(
+            condition_for_filling,
+            lon_mean
+        )
+    elif na_values_processing == "drop":
+        data_encoded = data_encoded[data_encoded["lat"].notna()]
 
 x_data = data_encoded.drop('price', axis=1)
 y_data = data_encoded['price']

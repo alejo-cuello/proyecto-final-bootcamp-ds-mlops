@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/093054b1a2324029b135a130d37b6cc7/artifacts
+end_time: 1764845911163
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: 093054b1a2324029b135a130d37b6cc7
+run_name: capable-mole-967
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764845908664
+status: 3
+tags: []
+user_id: alejo

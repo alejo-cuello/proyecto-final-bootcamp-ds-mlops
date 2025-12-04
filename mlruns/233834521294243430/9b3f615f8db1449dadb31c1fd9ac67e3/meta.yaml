@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/9b3f615f8db1449dadb31c1fd9ac67e3/artifacts
+end_time: 1764845700286
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: 9b3f615f8db1449dadb31c1fd9ac67e3
+run_name: abrasive-bat-154
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764845698103
+status: 3
+tags: []
+user_id: alejo

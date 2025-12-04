@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/4217f5aa2b5b4988a47504bc68923b58/artifacts
+deleted_time: 1764803437321
+end_time: 1764803358295
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: deleted
+run_id: 4217f5aa2b5b4988a47504bc68923b58
+run_name: delicate-eel-492
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764803356567
+status: 3
+tags: []
+user_id: alejo

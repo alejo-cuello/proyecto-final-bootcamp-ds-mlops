@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/1c2bf232120b42069c3a5f2619905a65/artifacts
+end_time: 1764845941663
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: 1c2bf232120b42069c3a5f2619905a65
+run_name: clumsy-pig-916
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764845939156
+status: 3
+tags: []
+user_id: alejo

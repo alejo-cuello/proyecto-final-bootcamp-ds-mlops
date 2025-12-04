@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/df824b6b3d9f401398eb795903d59dab/artifacts
+end_time: 1764845867685
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: df824b6b3d9f401398eb795903d59dab
+run_name: angry-wren-644
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764845865290
+status: 3
+tags: []
+user_id: alejo

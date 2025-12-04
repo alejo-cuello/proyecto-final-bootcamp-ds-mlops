@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/de228fc30a2e4a92a32a0796ae59ad6b/artifacts
+end_time: 1764845953276
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: de228fc30a2e4a92a32a0796ae59ad6b
+run_name: burly-shrike-613
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764845950960
+status: 3
+tags: []
+user_id: alejo
