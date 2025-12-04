@@ -1,11 +1,11 @@
 {
     "lat": {
-        "Min": -59.0574481271,
+        "Min": -59.0423996,
         "Max": -57.8305701
     },
     "lon": {
         "Min": -35.05879211,
-        "Max": -34.0488002
+        "Max": -34.2569508692
     },
     "rooms": {
         "Min": 1,
@@ -20,24 +20,24 @@
         "Max": 4
     },
     "surface_total": {
-        "Min": 0.0,
-        "Max": 506.0
+        "Min": 10.0,
+        "Max": 391.0
     },
     "surface_covered": {
         "Min": 1.0,
-        "Max": 245.0
+        "Max": 219.0
     },
     "price": {
-        "Min": 0.0,
-        "Max": 477400.0
+        "Min": 5006.0,
+        "Max": 460840.0
     },
     "days_since_start": {
-        "Min": 1954,
-        "Max": 2343
+        "Min": 1956,
+        "Max": 2345
     },
     "days_since_end": {
-        "Min": 1894.0,
-        "Max": 2342.0
+        "Min": 1896.0,
+        "Max": 2344.0
     },
     "available_publication": {
         "Min": false,
