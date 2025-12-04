@@ -1,3 +1,4 @@
+import json
 import mlflow.sklearn
 import numpy as np
 import pandas as pd
@@ -7,6 +8,9 @@ from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.ensemble import RandomForestRegressor
 
 data_encoded = pd.read_csv("data/03-encoded-properati.csv", sep=',', index_col=0)
+
+with open("notebooks/price_by_quantile.json", "rb") as handle:
+    price_by_quantile = json.load(handle)
 
 # MLFlow: Variables a setear para cada corrida del experimento
 
@@ -20,14 +24,15 @@ model_rs = 42
 random_grid_n_iter = 10
 random_grid_cv = 3
 random_grid_rs = 42
-max_price = 390500
+filter_price_by_quantile = "Q3+1.5IQR" # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
+max_price = price_by_quantile[filter_price_by_quantile] if filter_price_by_quantile is not None else None
+with_l3_feature = True
 columns_to_drop = [
-    # "lat",
-    # "lon",
-    "surface_uncovered",
-    "available_publication",
-    "days_since_start",
-    "days_since_end",
+    "lat", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+    "lon", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+    # "available_publication",
+    # "days_since_start",
+    # "days_since_end",
     # "rooms",
     # "bedrooms",
     # "bathrooms",
@@ -38,8 +43,8 @@ columns_to_drop = [
     # "l2_Bs.As. G.B.A. Zona Sur",
     # "l2_Capital Federal",
     # "property_type_Departamento",
-    "property_type_Local comercial",
-    "property_type_Oficina",
+    # "property_type_Local comercial",
+    # "property_type_Oficina",
     # "property_type_PH"
 ]
 
@@ -52,12 +57,14 @@ mlflow.log_param("random_grid_n_iter",random_grid_n_iter)
 mlflow.log_param("random_grid_cv",random_grid_cv)
 mlflow.log_param("random_grid_rs",random_grid_rs)
 mlflow.log_param("max_price",max_price)
+mlflow.log_param("with_l3_feature",with_l3_feature)
 mlflow.log_param("columns_to_drop",", ".join(columns_to_drop))
 
 # Aclaración importante: tomaré solo el 20% del total de registros para entrenar los primeros modelos que me permitirán evaluar y seleccionar los mejores modelos y sus features correspondientes. El 20% es un porcentaje arbitrario que creo que es bastante representativo del total, y son bastantes registros.
 
 sample = data_encoded.sample(frac=sample_frac, random_state=sample_rs)
-sample = sample[sample["price"] < max_price]
+if max_price is not None:
+    sample = sample[sample["price"] < max_price]
 sample = sample.drop(columns=columns_to_drop)
 
 x_data = sample.drop('price', axis=1)

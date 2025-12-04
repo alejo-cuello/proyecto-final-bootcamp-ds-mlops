@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/342d1626dfef48628d1d39e7ba3d2f83/artifacts
+end_time: 1764884971683
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: 342d1626dfef48628d1d39e7ba3d2f83
+run_name: painted-skink-883
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764884886068
+status: 3
+tags: []
+user_id: alejo

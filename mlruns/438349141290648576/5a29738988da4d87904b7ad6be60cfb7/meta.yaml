@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/5a29738988da4d87904b7ad6be60cfb7/artifacts
+deleted_time: 1764884503030
+end_time: 1764884357944
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: deleted
+run_id: 5a29738988da4d87904b7ad6be60cfb7
+run_name: serious-pig-771
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764884357754
+status: 3
+tags: []
+user_id: alejo
