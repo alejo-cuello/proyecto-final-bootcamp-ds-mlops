@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/3556c740130d4c428370a30c4d464907/artifacts
+end_time: 1764892330614
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: active
+run_id: 3556c740130d4c428370a30c4d464907
+run_name: placid-chimp-858
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764891939126
+status: 3
+tags: []
+user_id: alejo

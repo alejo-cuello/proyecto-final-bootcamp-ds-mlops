@@ -1,3 +1,4 @@
+import json
 import mlflow.sklearn
 import numpy as np
 import pandas as pd
@@ -9,24 +10,28 @@ from sklearn.ensemble import RandomForestRegressor
 
 data_encoded = pd.read_csv("data/03-encoded-properati.csv", sep=',', index_col=0)
 
+with open("notebooks/price_by_quantile.json", "rb") as handle:
+    price_by_quantile = json.load(handle)
+
 # MLFlow: Variables a setear para cada corrida del experimento
 
 mlflow.set_experiment(experiment_name="gridsearchcv-model-rfr")
 
 sample_frac = 0.2
 sample_rs = 42 # rs = random_state
-test_split_size = 0.2
+test_split_size = 0.3
 test_split_rs = 42
 model_rs = 42
 random_grid_cv = 3
-max_price = 390611
+filter_price_by_quantile = "Q3" # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
+max_price = price_by_quantile[filter_price_by_quantile] if filter_price_by_quantile is not None else None
+with_l3_feature = True
 columns_to_drop = [
-    # "lat",
-    # "lon",
-    "surface_uncovered",
-    "available_publication",
-    "days_since_start",
-    "days_since_end",
+    "lat", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+    "lon", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+    # "available_publication",
+    # "days_since_start",
+    # "days_since_end",
     # "rooms",
     # "bedrooms",
     # "bathrooms",
@@ -48,13 +53,15 @@ mlflow.log_param("test_split_size",test_split_size)
 mlflow.log_param("test_split_rs",test_split_rs)
 mlflow.log_param("model_rs",model_rs)
 mlflow.log_param("random_grid_cv",random_grid_cv)
+mlflow.log_param("filter_price_by_quantile",filter_price_by_quantile)
 mlflow.log_param("max_price",max_price)
 mlflow.log_param("columns_to_drop",", ".join(columns_to_drop))
 
 # Aclaración importante: tomaré solo el 20% del total de registros para entrenar los primeros modelos que me permitirán evaluar y seleccionar los mejores modelos y sus features correspondientes. El 20% es un porcentaje arbitrario que creo que es bastante representativo del total, y son bastantes registros.
 
 sample = data_encoded.sample(frac=sample_frac, random_state=sample_rs)
-sample = sample[sample["price"] < max_price]
+if max_price is not None:
+    sample = sample[sample["price"] < max_price]
 sample = sample.drop(columns=columns_to_drop)
 
 x_data = sample.drop('price', axis=1)
@@ -68,15 +75,17 @@ x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=te
 model_rfr = RandomForestRegressor(random_state=model_rs)
 
 # Realizaré una gridSearch tomando como eje los parámetros obtenidos en el mejor run del experimento baseline-model-rfr
-# param_grid = {
-#     'bootstrap': [False],
-#     'max_depth': [10, 15],
-#     'max_features': [1.0],
-#     'min_samples_leaf': [2, 3, 4],
-#     'min_samples_split': [5, 7, 10],
-#     'n_estimators': [200]
-# }
+param_grid = {
+    'bootstrap': [False], # False
+    'max_depth': [5, 10, 15], # 10
+    'max_features': [1.0], # 1
+    'min_samples_leaf': [1, 2, 3, 4], # 1 
+    'min_samples_split': [3, 5, 7, 10], # 5
+    'n_estimators': [200] # 200
+}
 
+# (Obsoleto: Utilizado en la primera iteración del proyecto)
+# =============================================================
 # Prueba extra para ver si se reduce el overfitting
 # param_grid = {
 #     'bootstrap': [False],
@@ -88,14 +97,15 @@ model_rfr = RandomForestRegressor(random_state=model_rs)
 # }
 
 # Parámetros del modelo final
-param_grid = {
-    'bootstrap': [False],
-    'max_depth': [12],
-    'max_features': [1.0],
-    'min_samples_leaf': [3],
-    'min_samples_split': [8],
-    'n_estimators': [200]
-}
+# param_grid = {
+#     'bootstrap': [False],
+#     'max_depth': [12],
+#     'max_features': [1.0],
+#     'min_samples_leaf': [3],
+#     'min_samples_split': [8],
+#     'n_estimators': [200]
+# }
+# =============================================================
 
 grid_search = GridSearchCV(estimator = model_rfr, param_grid = param_grid, scoring = "neg_mean_absolute_error", cv = random_grid_cv, verbose=2, n_jobs = -1)
 grid_search.fit(x_train, y_train)
