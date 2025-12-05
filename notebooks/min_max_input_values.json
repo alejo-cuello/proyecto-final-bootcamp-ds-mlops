@@ -29,7 +29,7 @@
     },
     "price": {
         "Min": 5006.0,
-        "Max": 460840.0
+        "Max": 224990.0
     },
     "days_since_start": {
         "Min": 1956,
@@ -137,7 +137,7 @@
     },
     "l3_Distrito Audiovisual": {
         "Min": 0,
-        "Max": 1
+        "Max": 0
     },
     "l3_Escobar": {
         "Min": 0,
