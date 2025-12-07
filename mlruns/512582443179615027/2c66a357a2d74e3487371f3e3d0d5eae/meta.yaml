@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/2c66a357a2d74e3487371f3e3d0d5eae/artifacts
+deleted_time: 1764937314655
+end_time: 1764933659674
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: deleted
+run_id: 2c66a357a2d74e3487371f3e3d0d5eae
+run_name: unruly-bird-945
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764933659397
+status: 3
+tags: []
+user_id: alejo

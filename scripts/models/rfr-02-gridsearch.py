@@ -29,9 +29,9 @@ with_l3_feature = True
 columns_to_drop = [
     "lat", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
     "lon", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
-    # "available_publication",
-    # "days_since_start",
-    # "days_since_end",
+    "available_publication", #Este dato no servirá porque un usuario no buscará publicaciones de casas
+    "days_since_start", #Este dato no servirá porque un usuario no buscará publicaciones de casas
+    "days_since_end", #Este dato no servirá porque un usuario no buscará publicaciones de casas
     # "rooms",
     # "bedrooms",
     # "bathrooms",
@@ -77,10 +77,10 @@ model_rfr = RandomForestRegressor(random_state=model_rs)
 # Realizaré una gridSearch tomando como eje los parámetros obtenidos en el mejor run del experimento baseline-model-rfr
 param_grid = {
     'bootstrap': [False], # False
-    'max_depth': [5, 10, 15], # 10
+    'max_depth': [30, 40, 50], # 40
     'max_features': [1.0], # 1
-    'min_samples_leaf': [1, 2, 3, 4], # 1 
-    'min_samples_split': [3, 5, 7, 10], # 5
+    'min_samples_leaf': [3, 4, 5], # 4 
+    'min_samples_split': [8, 10, 12], # 10
     'n_estimators': [200] # 200
 }
 

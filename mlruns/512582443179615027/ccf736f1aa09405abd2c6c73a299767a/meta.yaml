@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/ccf736f1aa09405abd2c6c73a299767a/artifacts
+end_time: 1764960218057
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: active
+run_id: ccf736f1aa09405abd2c6c73a299767a
+run_name: crawling-shrew-967
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764960023747
+status: 3
+tags: []
+user_id: alejo

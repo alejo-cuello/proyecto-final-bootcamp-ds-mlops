@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/40a3d0d6b31b49f89087a46f59828dc4/artifacts
+deleted_time: 1764937314654
+end_time: 1764933808437
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: deleted
+run_id: 40a3d0d6b31b49f89087a46f59828dc4
+run_name: dazzling-frog-984
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764933808226
+status: 3
+tags: []
+user_id: alejo

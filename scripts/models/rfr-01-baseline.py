@@ -18,21 +18,21 @@ mlflow.set_experiment(experiment_name="baseline-model-rfr")
 
 sample_frac = 0.2
 sample_rs = 42 # rs = random_state
-test_split_size = 0.2
+test_split_size = 0.3
 test_split_rs = 42
 model_rs = 42
 random_grid_n_iter = 10
 random_grid_cv = 3
 random_grid_rs = 42
-filter_price_by_quantile = "Q3+1.5IQR" # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
+filter_price_by_quantile = "Q3" # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
 max_price = price_by_quantile[filter_price_by_quantile] if filter_price_by_quantile is not None else None
 with_l3_feature = True
 columns_to_drop = [
     "lat", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
     "lon", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
-    # "available_publication",
-    # "days_since_start",
-    # "days_since_end",
+    "available_publication", #Este dato no servirá porque un usuario no buscará publicaciones de casas
+    "days_since_start", #Este dato no servirá porque un usuario no buscará publicaciones de casas
+    "days_since_end", #Este dato no servirá porque un usuario no buscará publicaciones de casas
     # "rooms",
     # "bedrooms",
     # "bathrooms",

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/cbf7fb382c154d5581a25921236cc0af/artifacts
+end_time: 1764957834815
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: cbf7fb382c154d5581a25921236cc0af
+run_name: amusing-duck-161
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764957791780
+status: 3
+tags: []
+user_id: alejo

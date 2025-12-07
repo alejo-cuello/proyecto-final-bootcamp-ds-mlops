@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/1c415a3f45f64f67b9fb24a9b9f5a3e3/artifacts
+end_time: 1764957057199
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: 1c415a3f45f64f67b9fb24a9b9f5a3e3
+run_name: bittersweet-tern-227
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764957056082
+status: 3
+tags: []
+user_id: alejo
