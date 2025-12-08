@@ -59,10 +59,10 @@ https://huggingface.co/spaces/alejo-cuello/proyecto-final-bootcamp-ds-mlops
 - **Adición de Variable L3:** Se incorporó la variable L3, que corresponde a los barrios, la cual se identificó como de gran valor para la aplicación
 - **Limpieza de Datos de Superficie:** Se descartaron aquellos registros donde la superficie cubierta era mayor a la superficie total, ya que esta situación no es factible
 
-## **Correcciones en el Modelado:**
+### **Correcciones en el Modelado:**
 - **Descarte de Variables:** Basándose en las correcciones del análisis exploratorio, se realizaron ajustes en los modelos, descartando las variables de latitud y longitud
 
-# **Correcciones en la Interfaz (UI):**
+### **Correcciones en la Interfaz (UI):**
 - **Integración del Barrio:** Se hicieron las correcciones pertinentes en la interfaz para agregar la selección del barrio
 - **Condicionales por Zona:** Se añadieron condicionales en los selectores para seleccionar barrios de la zona elegida
 - **Validación de Inputs (Superficie):** Se mejoraron los inputs condicionando que la superficie cubierta nunca pueda ser mayor a la superficie total
