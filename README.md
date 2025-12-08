@@ -1,5 +1,5 @@
 # Estimador de precios de propiedades
-Proyecto final del Bootcamp de Data Science y MLOps, dictado por Escuela de Datos Vivos
+Proyecto final del Bootcamp de Data Science y MLOps, dictado por [Escuela de Datos Vivos](https://www.escueladedatosvivos.ai/). Para evaluar mi progreso durante el bootcamp, podés visitar [este repositorio](https://github.com/alejo-cuello/bootcamp-ds-mlops)
 
 ## 📊 **Parte 1 — EDA y Preparación de Datos**
 
