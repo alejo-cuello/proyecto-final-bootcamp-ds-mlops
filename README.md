@@ -1,5 +1,5 @@
 # Estimador de precios de propiedades
-Proyecto final del Bootcamp de Data Science y MLOps, dictado por [Escuela de Datos Vivos](https://www.escueladedatosvivos.ai/). Consiste en realizar el análisis, exploración y limpieza de un set de datos de propiedades inmobiliarias. Una vez realizadas estas tareas, se solicitó desarrollar modelos para predecir el precio de una propiedad según las características que ingrese el usuario en una interfaz subida en [Hugging Face](https://huggingface.co/spaces/alejo-cuello/proyecto-final-bootcamp-ds-mlops) 
+Proyecto final del Bootcamp de Data Science y MLOps, dictado por [Escuela de Datos Vivos](https://www.escueladedatosvivos.ai/). Consiste en realizar el análisis, exploración y limpieza de un set de datos de propiedades inmobiliarias. Una vez realizadas estas tareas, se solicitó desarrollar modelos para predecir el precio de una propiedad según las características que ingrese el usuario en una interfaz subida en [Hugging Face](https://huggingface.co/spaces/alejo-cuello/proyecto-final-bootcamp-ds-mlops). La consigna completa puede verse en [proyecto-final-bds.md](https://github.com/alejo-cuello/proyecto-final-bootcamp-ds-mlops/blob/main/consigna/proyecto-final-bds.md)
 
 ## 📊 **Parte 1 — EDA y Preparación de Datos**
 
