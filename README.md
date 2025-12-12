@@ -16,7 +16,7 @@ Ver el archivo [notebooks/01-eda.ipynb](https://github.com/alejo-cuello/proyecto
 
 ### **Notebook de modelado:** 
 
-Ver los scripts dentro de la carpeta *scripts/models*. Para una mayor explicación del proceso de modelado, consultar la sección *Explicación del proceso de modelado de datos* de este archivo.
+Ver los scripts dentro de la carpeta [scripts/models](https://github.com/alejo-cuello/proyecto-final-bootcamp-ds-mlops/tree/main/scripts/models). Para una mayor explicación del proceso de modelado, consultar la sección *Explicación del proceso de modelado de datos* de este archivo.
 
 ### **Insights del modelo:**
 
