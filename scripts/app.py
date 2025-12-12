@@ -131,7 +131,7 @@ def update_bedrooms_bathrooms(max_total):
 with gr.Blocks() as demo:
     gr.Markdown(
         """
-        # 🏡 Estimador de precio de propiedades en venta
+        # 🏡 Estimador de precios de propiedades en venta
         """
     )
     with gr.Row():
@@ -239,11 +239,14 @@ with gr.Blocks() as demo:
         with gr.Column():
             gr.Markdown(
                 """
-                ## 💲 Precio estimado
+                ## Precio estimado
                 """
             )
-            
-            prediction_btn = gr.Button(value="Calcular")
+    
+    with gr.Row():
+        with gr.Column(scale=1):   
+            prediction_btn = gr.Button(value="Calcular",variant="primary")
+        with gr.Column(scale=2):   
             label = gr.Label(label="Score")
             prediction_btn.click(
                 predict,
