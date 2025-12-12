@@ -138,7 +138,6 @@ with gr.Blocks() as demo:
         with gr.Column():
             gr.Markdown(
                 """
-                ---
                 ## Ingrese las características que busca
                 """
             )
@@ -240,7 +239,6 @@ with gr.Blocks() as demo:
         with gr.Column():
             gr.Markdown(
                 """
-                ---
                 ## 💲 Precio estimado
                 """
             )
