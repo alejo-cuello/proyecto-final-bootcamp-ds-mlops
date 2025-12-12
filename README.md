@@ -10,7 +10,7 @@ Ver en la sección *Conclusiones de negocio* más abajo
 
 ### **Código y comentarios:**
 
-Ver el archivo notebooks/01-eda.ipynb
+Ver el archivo [notebooks/01-eda.ipynb](https://github.com/alejo-cuello/proyecto-final-bootcamp-ds-mlops/blob/main/notebooks/01-eda.ipynb)
 
 ## 🤖 **Parte 2 — Modelado y Evaluación**
 
