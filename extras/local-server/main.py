@@ -28,6 +28,7 @@ class Answer(BaseModel):
     surface_total: float
     surface_covered: float
     l2: str
+    l3: str
     property_type: str
     lat: float
     lon: float
@@ -47,7 +48,9 @@ def predict_price(answer: Answer):
     
     single_instance = pd.DataFrame.from_dict(answer_dict)
     
-    single_instance_ohe = pd.get_dummies(single_instance, dtype="int64").reindex(columns=columns_ohe,fill_value=0)
+    columns_ohe_2 = columns_ohe.drop(["lat","lon","available_publication","days_since_start","days_since_end"], errors="ignore")
+
+    single_instance_ohe = pd.get_dummies(single_instance, dtype="int64").reindex(columns=columns_ohe_2,fill_value=0)
     
     prediction = model.predict(single_instance_ohe)
  
