@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/b5e2e7d73faa4c50bc845714026ccbbb/artifacts
+deleted_time: 1764845741642
+end_time: 1764844180613
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: deleted
+run_id: b5e2e7d73faa4c50bc845714026ccbbb
+run_name: popular-donkey-327
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764844177518
+status: 3
+tags: []
+user_id: alejo

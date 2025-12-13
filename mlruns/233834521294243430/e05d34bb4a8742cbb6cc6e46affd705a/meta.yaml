@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/e05d34bb4a8742cbb6cc6e46affd705a/artifacts
+end_time: 1764957005340
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: e05d34bb4a8742cbb6cc6e46affd705a
+run_name: shivering-asp-414
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764957004199
+status: 3
+tags: []
+user_id: alejo

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/512582443179615027/561e48f133d34b2d91fb9f422fbe93cd/artifacts
+deleted_time: 1764937314654
+end_time: 1764933677013
+entry_point_name: ''
+experiment_id: '512582443179615027'
+lifecycle_stage: deleted
+run_id: 561e48f133d34b2d91fb9f422fbe93cd
+run_name: unequaled-bear-431
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764933676846
+status: 3
+tags: []
+user_id: alejo

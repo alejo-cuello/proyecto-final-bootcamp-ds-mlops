@@ -4,8 +4,8 @@
         "Max": -57.8305701
     },
     "lon": {
-        "Min": -35.05744934,
-        "Max": -34.286049
+        "Min": -35.05879211,
+        "Max": -34.2569508692
     },
     "rooms": {
         "Min": 1,
@@ -21,27 +21,23 @@
     },
     "surface_total": {
         "Min": 10.0,
-        "Max": 254.0
+        "Max": 391.0
     },
     "surface_covered": {
         "Min": 1.0,
         "Max": 219.0
     },
     "price": {
-        "Min": 6000.0,
-        "Max": 460161.0
+        "Min": 5006.0,
+        "Max": 224990.0
     },
     "days_since_start": {
-        "Min": 1932,
-        "Max": 2321
+        "Min": 1956,
+        "Max": 2345
     },
     "days_since_end": {
-        "Min": 1872.0,
-        "Max": 2320.0
-    },
-    "surface_uncovered": {
-        "Min": -9.0,
-        "Max": 35.0
+        "Min": 1896.0,
+        "Max": 2344.0
     },
     "available_publication": {
         "Min": false,
@@ -56,6 +52,362 @@
         "Max": 1
     },
     "l2_Capital Federal": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Agronom\u00eda": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Almagro": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Almirante Brown": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Avellaneda": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Balvanera": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Barracas": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Barrio Norte": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Belgrano": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Berazategui": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Boca": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Boedo": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Caballito": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Catalinas": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Ca\u00f1uelas": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Centro / Microcentro": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Chacarita": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Coghlan": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Colegiales": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Congreso": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Constituci\u00f3n": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Distrito Audiovisual": {
+        "Min": 0,
+        "Max": 0
+    },
+    "l3_Escobar": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Esteban Echeverr\u00eda": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Ezeiza": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Florencio Varela": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Flores": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Floresta": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_General Rodr\u00edguez": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_General San Mart\u00edn": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Hurlingham": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Ituzaing\u00f3": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Jos\u00e9 C Paz": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_La Matanza": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_La Plata": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Lan\u00fas": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Las Ca\u00f1itas": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Liniers": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Lomas de Zamora": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Malvinas Argentinas": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Marcos Paz": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Mataderos": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Merlo": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Monserrat": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Monte Castro": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Moreno": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Mor\u00f3n": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Nu\u00f1ez": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Once": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Palermo": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Parque Avellaneda": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Parque Centenario": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Parque Chacabuco": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Parque Chas": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Parque Patricios": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Paternal": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Pilar": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Pompeya": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Presidente Per\u00f3n": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Puerto Madero": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Quilmes": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Recoleta": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Retiro": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Saavedra": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_San Cristobal": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_San Fernando": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_San Isidro": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_San Miguel": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_San Nicol\u00e1s": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_San Telmo": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_San Vicente": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Tigre": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Tres de Febrero": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Tribunales": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Velez Sarsfield": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Versalles": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Vicente L\u00f3pez": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Crespo": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Devoto": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa General Mitre": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Lugano": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Luro": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Ortuzar": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Pueyrred\u00f3n": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Real": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Riachuelo": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Santa Rita": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Soldati": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa Urquiza": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Villa del Parque": {
         "Min": 0,
         "Max": 1
     },

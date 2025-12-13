@@ -11,11 +11,11 @@ PARAM_NAMES = {
     "surface_total",
     "surface_covered",
     "l2",
+    "l3",
     "property_type"
 }
 
-# model_path = hf_hub_download(repo_id="alejo-cuello/bootcamp-ds-mlops-primer-ejercicio", filename="rf.pkl")
-model_path = "mlruns/512582443179615027/models/m-0248ec91bbc349f393da1c30e4f3fed1/artifacts/model.pkl"
+model_path = "mlruns/512582443179615027/models/m-454cb18b3a6d4aa3b4f229257f7fb5c8/artifacts/model.pkl"
 
 with open(model_path, "rb") as handle:
     model = pickle.load(handle)
@@ -25,6 +25,9 @@ with open("notebooks/categories_ohe.pkl", "rb") as handle:
 
 with open("notebooks/min_max_input_values.json", "rb") as handle:
     min_max_input_values = json.load(handle)
+
+with open("notebooks/l3_by_l2.json", "rb") as handle:
+    l3_by_l2 = json.load(handle)
     
 def predict(*args):
     keys = [
@@ -34,35 +37,107 @@ def predict(*args):
         "surface_total",
         "surface_covered",
         "l2",
+        "l3",
         "property_type",
-        # "lat",
-        # "lon"
+        # "lat", # Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+        # "lon" # Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
     ]
     
     data_dict = dict(zip(keys, args))
     single_instance = pd.DataFrame([data_dict])
     
-    #TODO: Sería bueno mostrar un mapa para obtener del cliente una latitud y longitud. O sino hacer un modelo si estos inputs 
-    # De momento dejo hardcodeado un valor promedio
-    single_instance["lat"] =  -58.46
-    single_instance["lon"] =  -34.6
+    columns_ohe_2 = columns_ohe.drop(["lat","lon","available_publication","days_since_start","days_since_end"], errors="ignore")
     
-    single_instance_ohe = pd.get_dummies(single_instance,dtype="int64").reindex(columns=columns_ohe,fill_value=0)
+    single_instance_ohe = pd.get_dummies(single_instance,dtype="int64").reindex(columns=columns_ohe_2,fill_value=0)
+
     prediction = model.predict(single_instance_ohe)
 
     return f"U$D {round(prediction[0],2)}"
 
+def update_l3_selector(l2):
+
+    if l2 is None:
+        return gr.Dropdown(
+            label="Barrio",
+            choices=[],
+            value=None,
+            multiselect=False
+        )
+
+    return gr.Dropdown(
+        label="Barrio",
+        choices=sorted(l3_by_l2[l2]),
+        value=l3_by_l2[l2][0],
+        multiselect=False
+    )
+
+def update_surface_covered(max_total):
+    if max_total is None:
+        return gr.Slider(
+            label="Superficie cubierta (m2)",
+            minimum=min_max_input_values["surface_covered"]["Min"],
+            maximum=min_max_input_values["surface_covered"]["Max"],
+            value=min_max_input_values["surface_covered"]["Min"],
+            step=1
+        )
+
+    return gr.Slider(
+        label="Superficie cubierta (m2)",
+        minimum=min_max_input_values["surface_covered"]["Min"],
+        maximum=max_total,
+        value=max_total,
+        step=1
+    )
+
+def update_bedrooms_bathrooms(max_total):
+    if max_total is None:
+        return (
+            gr.Slider(
+                label="Cantidad de dormitorios",
+                minimum=min_max_input_values["bedrooms"]["Min"],
+                maximum=min_max_input_values["bedrooms"]["Max"],
+                value=min_max_input_values["bedrooms"]["Min"],
+                step=1
+            ),
+            gr.Slider(
+                label="Cantidad de baños",
+                minimum=min_max_input_values["bathrooms"]["Min"],
+                maximum=min_max_input_values["bathrooms"]["Max"],
+                value=min_max_input_values["bathrooms"]["Min"],
+                step=1
+            )
+        )
+
+    max_bedrooms = min_max_input_values["bedrooms"]["Max"] if min_max_input_values["bedrooms"]["Max"] < max_total else max_total 
+    max_bathrooms = min_max_input_values["bathrooms"]["Max"] if min_max_input_values["bathrooms"]["Max"] < max_total else max_total
+
+    return (
+        gr.Slider(
+            label="Cantidad de dormitorios",
+            minimum=min_max_input_values["bedrooms"]["Min"],
+            maximum=max_bedrooms,
+            value=min_max_input_values["bedrooms"]["Min"],
+            step=1
+        ),
+        gr.Slider(
+            label="Cantidad de baños",
+            minimum=min_max_input_values["bathrooms"]["Min"],
+            maximum=max_bathrooms,
+            value=min_max_input_values["bathrooms"]["Min"],
+            step=1
+        )
+    )
+
 with gr.Blocks() as demo:
     gr.Markdown(
         """
-        # 🏡 Estimador de precio de propiedades en venta
+        # 🏡 Estimador de precios de propiedades en venta
         """
     )
     with gr.Row():
         with gr.Column():
             gr.Markdown(
                 """
-                ---
                 ## Ingrese las características que busca
                 """
             )
@@ -70,10 +145,44 @@ with gr.Blocks() as demo:
         with gr.Column():
             gr.Markdown(
                 """
+                ### Tipo y zona
+                """
+            )
+            property_type = gr.Dropdown(
+                label="Tipo de propiedad",
+                choices=sorted([
+                    "Departamento",
+                    "Casa",
+                    "PH",
+                    "Oficina",
+                    "Local comercial"
+                ]),
+                value="Departamento",
+                multiselect=False
+            )    
+            l2 = gr.Dropdown(
+                label="Zona",
+                choices=sorted(list(l3_by_l2.keys())),
+                value="Capital Federal",
+                multiselect=False
+            )
+            l3 = gr.Dropdown(
+                label="Barrio",
+                choices=sorted(l3_by_l2["Capital Federal"]),
+                value=l3_by_l2["Capital Federal"][0],
+                multiselect=False
+            )
+            l2.change(
+                fn=update_l3_selector,
+                inputs=l2,
+                outputs=l3
+            )
+        with gr.Column():
+            gr.Markdown(
+                """
                 ### Ambientes
                 """
             )
-            #TODO: Se podrían mostrar cantidades de ambientes condicionales al tipo de propiedad seleccionado
             rooms = gr.Slider(
                 label="Cantidad de ambientes",
                 minimum=min_max_input_values["rooms"]["Min"],
@@ -95,34 +204,10 @@ with gr.Blocks() as demo:
                 value=min_max_input_values["bathrooms"]["Min"],
                 step=1
             )
-        with gr.Column():
-            gr.Markdown(
-                """
-                ### Tipo y zona
-                """
-            )
-            property_type = gr.Dropdown(
-                label="Tipo de propiedad",
-                choices=[
-                    "Departamento",
-                    "Casa",
-                    "PH",
-                    "Oficina",
-                    "Local comercial"
-                ],
-                value="Departamento",
-                multiselect=False
-            )    
-            l2 = gr.Dropdown(
-                label="Zona",
-                choices=[
-                    "Capital Federal",
-                    "Bs.As. G.B.A. Zona Norte",
-                    "Bs.As. G.B.A. Zona Sur",
-                    "Bs.As. G.B.A. Zona Oeste"
-                ],
-                value="Capital Federal",
-                multiselect=False
+            rooms.change(
+                fn=update_bedrooms_bathrooms,
+                inputs=rooms,
+                outputs=[bedrooms, bathrooms]
             )
         with gr.Column():
             gr.Markdown(
@@ -144,17 +229,24 @@ with gr.Blocks() as demo:
                 value=min_max_input_values["surface_covered"]["Min"],
                 step=1
             )
+            surface_total.change(
+                fn=update_surface_covered,
+                inputs=surface_total,
+                outputs=surface_covered
+            )
             
     with gr.Row():
         with gr.Column():
             gr.Markdown(
                 """
-                ---
-                ## 💲 Precio estimado
+                ## Precio estimado
                 """
             )
-            
-            prediction_btn = gr.Button(value="Calcular")
+    
+    with gr.Row():
+        with gr.Column(scale=1):   
+            prediction_btn = gr.Button(value="Calcular",variant="primary")
+        with gr.Column(scale=2):   
             label = gr.Label(label="Score")
             prediction_btn.click(
                 predict,
@@ -165,6 +257,7 @@ with gr.Blocks() as demo:
                     surface_total,
                     surface_covered,
                     l2,
+                    l3,
                     property_type,
                 ],
                 outputs=label,

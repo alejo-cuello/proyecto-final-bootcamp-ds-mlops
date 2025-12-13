@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/7ec4fe5b1bf0497c8af8e1dbb30ea4bc/artifacts
+deleted_time: 1764884503024
+end_time: 1764884401985
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: deleted
+run_id: 7ec4fe5b1bf0497c8af8e1dbb30ea4bc
+run_name: intrigued-finch-892
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764884401775
+status: 3
+tags: []
+user_id: alejo

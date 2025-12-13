@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/252cd193f9e847e69a33868ca5aa15c7/artifacts
+end_time: 1764885575790
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: 252cd193f9e847e69a33868ca5aa15c7
+run_name: popular-lynx-203
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764885441984
+status: 3
+tags: []
+user_id: alejo

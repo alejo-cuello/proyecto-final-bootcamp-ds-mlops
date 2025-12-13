@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/233834521294243430/dc3d8f1384da4d6abf731e9f22327d8d/artifacts
+end_time: 1764845923622
+entry_point_name: ''
+experiment_id: '233834521294243430'
+lifecycle_stage: active
+run_id: dc3d8f1384da4d6abf731e9f22327d8d
+run_name: adaptable-ape-610
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764845921142
+status: 3
+tags: []
+user_id: alejo

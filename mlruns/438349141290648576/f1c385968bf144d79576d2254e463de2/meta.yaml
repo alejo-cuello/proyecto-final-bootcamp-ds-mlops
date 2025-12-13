@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/f1c385968bf144d79576d2254e463de2/artifacts
+end_time: 1764885756103
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: f1c385968bf144d79576d2254e463de2
+run_name: ambitious-flea-541
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764885666978
+status: 3
+tags: []
+user_id: alejo

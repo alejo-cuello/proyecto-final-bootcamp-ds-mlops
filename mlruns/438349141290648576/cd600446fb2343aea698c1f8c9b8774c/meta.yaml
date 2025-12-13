@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/cd600446fb2343aea698c1f8c9b8774c/artifacts
+end_time: 1764957606386
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: cd600446fb2343aea698c1f8c9b8774c
+run_name: trusting-ram-684
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764957536494
+status: 3
+tags: []
+user_id: alejo

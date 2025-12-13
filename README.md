@@ -1,5 +1,5 @@
 # Estimador de precios de propiedades
-Proyecto final del Bootcamp de Data Science y MLOps, dictado por Escuela de Datos Vivos
+Proyecto final del Bootcamp de Data Science y MLOps, dictado por [Escuela de Datos Vivos](https://www.escueladedatosvivos.ai/). Consiste en realizar el análisis, exploración y limpieza de un set de datos de propiedades inmobiliarias. Una vez realizadas estas tareas, se solicitó desarrollar modelos para predecir el precio de una propiedad según las características que ingrese el usuario en una interfaz subida en [Hugging Face](https://huggingface.co/spaces/alejo-cuello/proyecto-final-bootcamp-ds-mlops). La consigna completa puede verse en [proyecto-final-bds.md](https://github.com/alejo-cuello/proyecto-final-bootcamp-ds-mlops/blob/main/consigna/proyecto-final-bds.md)
 
 ## 📊 **Parte 1 — EDA y Preparación de Datos**
 
@@ -10,13 +10,13 @@ Ver en la sección *Conclusiones de negocio* más abajo
 
 ### **Código y comentarios:**
 
-Ver el archivo notebooks/01-eda.ipynb
+Ver el archivo [notebooks/01-eda.ipynb](https://github.com/alejo-cuello/proyecto-final-bootcamp-ds-mlops/blob/main/notebooks/01-eda.ipynb)
 
 ## 🤖 **Parte 2 — Modelado y Evaluación**
 
 ### **Notebook de modelado:** 
 
-Ver los scripts dentro de la carpeta *scripts/models*. Para una mayor explicación del proceso de modelado, consultar la sección *Explicación del proceso de modelado de datos* de este archivo.
+Ver los scripts dentro de la carpeta [scripts/models](https://github.com/alejo-cuello/proyecto-final-bootcamp-ds-mlops/tree/main/scripts/models). Para una mayor explicación del proceso de modelado, consultar la sección *Explicación del proceso de modelado de datos* de este archivo.
 
 ### **Insights del modelo:**
 
@@ -32,7 +32,7 @@ También descarté "surface_uncovered", ya que se obtiene a partir de la resta e
 
 ### **Exportación del modelo:**
 
-El modelo fue exportado mediante MLFlow. Puede encontrarse en la carpeta *mlruns/512582443179615027/models/m-0248ec91bbc349f393da1c30e4f3fed1/artifacts/model.pkl* 
+El modelo fue exportado mediante MLFlow. Puede encontrarse en la carpeta *mlruns/512582443179615027/models/m-454cb18b3a6d4aa3b4f229257f7fb5c8/artifacts/model.pkl* 
 
 ## 🖥️ **Parte 3 — Interfaz con Gradio y Deploy en Hugging Face Spaces**
 
@@ -52,9 +52,27 @@ https://huggingface.co/spaces/alejo-cuello/proyecto-final-bootcamp-ds-mlops
 
 ![Api de gradio](assets/app-gradio-api.png)
 
+## ✍️ **Correciones post entrega**
+
+### **Correcciones en el Análisis Exploratorio y Tratamiento de Datos:**
+- **Eliminación de Hardcodeo de Coordenadas:** Se corrigió el error de dejar hardcodeada la latitud y la longitud en las predicciones. Dado que el modelo recibía estas coordenadas como una variable, su hardcodeo resultaba en un alto error de predicción
+- **Adición de Variable L3:** Se incorporó la variable L3, que corresponde a los barrios, la cual se identificó como de gran valor para la aplicación
+- **Limpieza de Datos de Superficie:** Se descartaron aquellos registros donde la superficie cubierta era mayor a la superficie total, ya que esta situación no es factible
+
+### **Correcciones en el Modelado:**
+- **Descarte de Variables:** Basándose en las correcciones del análisis exploratorio, se realizaron ajustes en los modelos, descartando las variables de latitud y longitud
+
+### **Correcciones en la Interfaz (UI):**
+- **Integración del Barrio:** Se hicieron las correcciones pertinentes en la interfaz para agregar la selección del barrio
+- **Condicionales por Zona:** Se añadieron condicionales en los selectores para seleccionar barrios de la zona elegida
+- **Validación de Inputs (Superficie):** Se mejoraron los inputs condicionando que la superficie cubierta nunca pueda ser mayor a la superficie total
+- **Validación de Inputs (Habitaciones/Baños):** Se mejoraron los inputs condicionando que la cantidad de baños y dormitorios nunca sea mayor a la cantidad total de ambientes
+
 ## ✅ Aprendizajes técnicos relevantes:
 - Para agilizar el entrenamiento de modelos ante datasets tan grandes, el muestreo es una buena opción, siempre que sea una proporción representativa del total.
 - El proyecto enseñó la relevancia de la automatización: se aprendió a realizar el tracking de las pruebas con MLflow, lo cual fue muy útil. Esto permitió parametrizar fácilmente las distintas corridas ejecutadas, teniendo a simple vista todos los resultados de hiperparámetros y scores.
+- El hardcodeo de variables en la predicción es algo que genera muchísimo error en las predicciones. Es algo que no debería hacerse nunca.
+- Siempre hay que incluir las variables que resulten de valor para el negocio, por ejemplo el barrio de la propiedad.
 
 ## ➕ Esto no termina acá:
 Posterior a la entrega solicitada en el Bootcamp, comencé a implementar el despliegue del modelo en AWS.
@@ -62,9 +80,6 @@ Posterior a la entrega solicitada en el Bootcamp, comencé a implementar el desp
 ## Anexo:
 
 ### 🔹 Conclusiones de negocio
-**¿Alguna vez viste una propiedad donde la superficie cubierta es mayor que la total?**
-
-Parece absurdo, pero en los datos ocurre, y muchas de esas publicaciones ni siquiera están disponibles. De hecho, la mayoría del mercado ya está fuera de línea, como si las mejores oportunidades hubieran desaparecido antes de tiempo.
 
 **¿Por qué es tan difícil encontrar casas en Capital Federal?**
 
@@ -87,25 +102,25 @@ Mi fase de modelado comenzó con el Random Forest Regressor, elegido por ser una
 
 Apliqué primero la búsqueda aleatoria (Randomized Search) para encontrar los mejores ajustes iniciales. Aunque luego ajusté estos parámetros con Grid Search CV, el error del mejor modelo seguía siendo notablemente grande y muy variable entre los datos de entrenamiento y prueba. Esta inestabilidad me obligó a dar un paso crucial hacia atrás en la limpieza de datos para mejorar la predicción, confirmando que la limpieza nunca termina.
 
-![Rancomized search](assets/rfr-model-randomizedsearch.png)
+![Randomized search](assets/rfr-model-randomizedsearch-2.png)
 
 La decisión más importante fue eliminar los outliers de registros con precios muy elevados, ya que generaban sesgos significativos en las predicciones. Esta intervención provocó una mejora notable en la estabilidad y el rendimiento del modelo de Random Forest, reduciendo el error. Al volver a aplicar Randomized Search y luego Grid Search, pude enfocarme en un modelo más estable, priorizando menor diferencia de error entre train y test. Este límite de precio máximo también lo trabajé como un parámetro de las corridas, ya que es un dato importante de considerar a la hora de decidirse por un modelo.
 
-![Rancomized search](assets/rfr-model-gridsearch.png)
+![Grid search](assets/rfr-model-gridsearch-2.png)
 
 Paralelamente a la optimización del random forest, también exploré el modelo más sencillo y rápido de Regresión Lineal. Aunque realicé los mismos ajustes, como variar las columnas consideradas y aplicar el recorte de outliers, sus resultados de rendimiento fueron consistentemente mucho más bajos. En comparación con los modelos de Random Forest, la Regresión Lineal no demostró ser una alternativa viable para esta tarea predictiva.
 
-![lr-model.png](assets/lr-model.png)
+![Linear model](assets/lr-model-2.png)
 
 La clave para gestionar esta serie de experimentos y ajustes —que me hicieron ir y venir— fue la implementación de MLflow. MLflow lo utilicé para el tracking de todos los hiperparámetros, scores y variables, permitiendo una rápida evaluación de las distintas corridas ejecutadas. Pude parametrizar todo fácilmente en archivos .py, asegurando que cada resultado obtenido quedara registrado de forma sencilla y automatizada.
 
 **Métricas del modelo seleccionado:**
-- mae_train: 22617.86
-- mae_test: 30077.74
-- p2_train: 0.83
-- p2_test: 0.71
-- rmse_train: 32523.89
-- rmse_test: 43379.21
+- mae_train: 16665.45
+- mae_test: 22794.13
+- p2_train: 0.76
+- p2_test: 0.55
+- rmse_train: 22765.30
+- rmse_test: 31232.57
 
 ### 🔹Puntos de mejora:
 - Se podría probar la agrupación de variables categóricas que se mantuvieron en consideración pero que cuentan con pocos registros.

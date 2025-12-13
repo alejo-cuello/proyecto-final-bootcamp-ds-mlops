@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/438349141290648576/db9430ed067948a6941e7ef8874c0fe7/artifacts
+end_time: 1764957411634
+entry_point_name: ''
+experiment_id: '438349141290648576'
+lifecycle_stage: active
+run_id: db9430ed067948a6941e7ef8874c0fe7
+run_name: gentle-sow-817
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764957329306
+status: 3
+tags: []
+user_id: alejo
