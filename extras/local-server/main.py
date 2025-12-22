@@ -30,15 +30,13 @@ class Answer(BaseModel):
     l2: str
     l3: str
     property_type: str
-    lat: float
-    lon: float
 
-@app.get("/")
+@app.get("/ping")
 async def root():
     return {"message": "Proyecto final del Bootcamp de DS y MLOps"}
 
 
-@app.post("/predict")
+@app.post("/invocations")
 def predict_price(answer: Answer):
 
     answer_dict = jsonable_encoder(answer)
@@ -62,4 +60,4 @@ def predict_price(answer: Answer):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8080)

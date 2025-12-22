@@ -74,8 +74,8 @@ https://huggingface.co/spaces/alejo-cuello/proyecto-final-bootcamp-ds-mlops
 - El hardcodeo de variables en la predicción es algo que genera muchísimo error en las predicciones. Es algo que no debería hacerse nunca.
 - Siempre hay que incluir las variables que resulten de valor para el negocio, por ejemplo el barrio de la propiedad.
 
-## ➕ Esto no termina acá:
-Posterior a la entrega solicitada en el Bootcamp, comencé a implementar el despliegue del modelo en AWS.
+## ➕ Mejoras post correcciones:
+Deployé el modelo en AWS, pudiendo obtener predicciones del mismo a través de un endpoint. Los archivos correspondientes al despliegue en AWS se encuentran en la carpeta [extras](https://github.com/alejo-cuello/proyecto-final-bootcamp-ds-mlops/tree/main/extras)
 
 ## Anexo:
 
