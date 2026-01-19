@@ -43,6 +43,10 @@
         "Min": false,
         "Max": true
     },
+    "l2_Bs.As. G.B.A. Zona Norte": {
+        "Min": 0,
+        "Max": 1
+    },
     "l2_Bs.As. G.B.A. Zona Oeste": {
         "Min": 0,
         "Max": 1
@@ -52,6 +56,10 @@
         "Max": 1
     },
     "l2_Capital Federal": {
+        "Min": 0,
+        "Max": 1
+    },
+    "l3_Abasto": {
         "Min": 0,
         "Max": 1
     },
@@ -408,6 +416,10 @@
         "Max": 1
     },
     "l3_Villa del Parque": {
+        "Min": 0,
+        "Max": 1
+    },
+    "property_type_Casa": {
         "Min": 0,
         "Max": 1
     },
