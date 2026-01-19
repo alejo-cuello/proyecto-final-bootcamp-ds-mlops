@@ -1,5 +1,6 @@
 import json
 import mlflow.sklearn
+import os
 import numpy as np
 import pandas as pd
 
@@ -7,131 +8,136 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.ensemble import RandomForestRegressor
 
-data_encoded = pd.read_csv("data/03-encoded-properati.csv", sep=',', index_col=0)
-
-with open("notebooks/price_by_quantile.json", "rb") as handle:
-    price_by_quantile = json.load(handle)
-
-# MLFlow: Variables a setear para cada corrida del experimento
+data_path = "data/split_by_l2"
+l2_csv_files = [f for f in os.listdir(data_path) if f.endswith(".csv")]
 
 mlflow.set_experiment(experiment_name="baseline-model-rfr")
 
-sample_frac = 0.2
-sample_rs = 42 # rs = random_state
-test_split_size = 0.3
-test_split_rs = 42
-model_rs = 42
-random_grid_n_iter = 10
-random_grid_cv = 3
-random_grid_rs = 42
-filter_price_by_quantile = "Q3" # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
-max_price = price_by_quantile[filter_price_by_quantile] if filter_price_by_quantile is not None else None
-with_l3_feature = True
-columns_to_drop = [
-    "lat", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
-    "lon", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
-    "available_publication", #Este dato no servirá porque un usuario no buscará publicaciones de casas
-    "days_since_start", #Este dato no servirá porque un usuario no buscará publicaciones de casas
-    "days_since_end", #Este dato no servirá porque un usuario no buscará publicaciones de casas
-    # "rooms",
-    # "bedrooms",
-    # "bathrooms",
-    # "surface_total",
-    # "surface_covered",
-    # "price",
-    # "l2_Bs.As. G.B.A. Zona Oeste",
-    # "l2_Bs.As. G.B.A. Zona Sur",
-    # "l2_Capital Federal",
-    # "property_type_Departamento",
-    # "property_type_Local comercial",
-    # "property_type_Oficina",
-    # "property_type_PH"
-]
-
-mlflow.log_param("sample_frac",sample_frac)
-mlflow.log_param("sample_rs",sample_rs)
-mlflow.log_param("test_split_size",test_split_size)
-mlflow.log_param("test_split_rs",test_split_rs)
-mlflow.log_param("model_rs",model_rs)
-mlflow.log_param("random_grid_n_iter",random_grid_n_iter)
-mlflow.log_param("random_grid_cv",random_grid_cv)
-mlflow.log_param("random_grid_rs",random_grid_rs)
-mlflow.log_param("filter_price_by_quantile",filter_price_by_quantile)
-mlflow.log_param("max_price",max_price)
-mlflow.log_param("with_l3_feature",with_l3_feature)
-mlflow.log_param("columns_to_drop",", ".join(columns_to_drop))
-
-# Aclaración importante: tomaré solo el 20% del total de registros para entrenar los primeros modelos que me permitirán evaluar y seleccionar los mejores modelos y sus features correspondientes. El 20% es un porcentaje arbitrario que creo que es bastante representativo del total, y son bastantes registros.
-
-sample = data_encoded.sample(frac=sample_frac, random_state=sample_rs)
-if max_price is not None:
-    sample = sample[sample["price"] < max_price]
-sample = sample.drop(columns=columns_to_drop)
-
-x_data = sample.drop('price', axis=1)
-y_data = sample['price']
-
-x_data = x_data.values
-y_data = y_data.values
-
-x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=test_split_size, random_state=test_split_rs)
-
-model_rfr = RandomForestRegressor(random_state=model_rs)
-
-# Realizaré una randomized search acotada debido a que tengo muchos registros. Primero intenté hacer esto con todos los registros y con 100 iteraciones, pero resultó inviable el tiempo que estaba tardando en entrenar
-
-random_grid = {
-    'n_estimators': [int(x) for x in np.linspace(start = 50, stop = 200, num = 5)],
-    'max_features': [1.0],
-    'max_depth': [int(x) for x in np.linspace(10, 110, num = 11)],
-    'min_samples_split': [2, 5, 10],
-    'min_samples_leaf': [1, 2, 4],
-    'bootstrap': [False] # Al tener muchos registros, creo que el remuestreo es innecesario
-}
-
-rf_random = RandomizedSearchCV(estimator = model_rfr, param_distributions = random_grid, scoring="neg_mean_absolute_error", n_iter = random_grid_n_iter, cv = random_grid_cv, verbose=2, random_state=random_grid_rs, n_jobs = -1)
-
-rf_random.fit(x_train, y_train)
-
-# Evaluación de métricas
-
-y_train_pred = rf_random.predict(x_train)
-y_test_pred = rf_random.predict(x_test)
-
-def regression_metrics(y_true, y_test_pred):
-    mse  = mean_squared_error(y_true, y_test_pred)
-    rmse = np.sqrt(mse)
-    mae  = mean_absolute_error(y_true, y_test_pred)
-    r2   = r2_score(y_true, y_test_pred)
+for l2_csv_file in l2_csv_files:
     
-    return rmse, mae, r2
+    with mlflow.start_run(run_name=f"rfr_{l2_csv_file}"):
+        data_encoded = pd.read_csv(os.path.join(data_path, l2_csv_file), sep=',', index_col=0)
+        with open("notebooks/price_by_quantile.json", "rb") as handle:
+            price_by_quantile = json.load(handle)
 
-rmse_train, mae_train, r2_train = regression_metrics(y_train, y_train_pred)
-print("Medidas en train:")
-print("RMSE:", round(rmse_train, 2))
-print("MAE:", round(mae_train, 2))
-print("R²:", round(r2_train, 4))
+        # MLFlow: Variables a setear para cada corrida del experimento
+        sample_frac = 0.2
+        sample_rs = 42 # rs = random_state
+        test_split_size = 0.3
+        test_split_rs = 42
+        model_rs = 42
+        random_grid_n_iter = 10
+        random_grid_cv = 3
+        random_grid_rs = 42
+        filter_price_by_quantile = "Q3" # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
+        max_price = price_by_quantile[filter_price_by_quantile] if filter_price_by_quantile is not None else None
+        with_l3_feature = True
+        columns_to_drop = [
+            "lat", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+            "lon", #Voy a sacar latitud y longitud porque no son datos que el usuario pueda ingresar desde la interfaz de Gradio
+            "available_publication", #Este dato no servirá porque un usuario no buscará publicaciones de casas
+            "days_since_start", #Este dato no servirá porque un usuario no buscará publicaciones de casas
+            "days_since_end", #Este dato no servirá porque un usuario no buscará publicaciones de casas
+            # "rooms",
+            # "bedrooms",
+            # "bathrooms",
+            # "surface_total",
+            # "surface_covered",
+            # "price",
+            # "l2_Bs.As. G.B.A. Zona Oeste",
+            # "l2_Bs.As. G.B.A. Zona Sur",
+            # "l2_Capital Federal",
+            # "property_type_Departamento",
+            # "property_type_Local comercial",
+            # "property_type_Oficina",
+            # "property_type_PH"
+        ]
 
-rmse_test, mae_test, r2_test = regression_metrics(y_test, y_test_pred)
-print("")
-print("Medidas en test:")
-print("RMSE:", round(rmse_test, 2))
-print("MAE:", round(mae_test, 2))
-print("R²:", round(r2_test, 4))
+        mlflow.log_param("sample_frac",sample_frac)
+        mlflow.log_param("sample_rs",sample_rs)
+        mlflow.log_param("test_split_size",test_split_size)
+        mlflow.log_param("test_split_rs",test_split_rs)
+        mlflow.log_param("model_rs",model_rs)
+        mlflow.log_param("random_grid_n_iter",random_grid_n_iter)
+        mlflow.log_param("random_grid_cv",random_grid_cv)
+        mlflow.log_param("random_grid_rs",random_grid_rs)
+        mlflow.log_param("filter_price_by_quantile",filter_price_by_quantile)
+        mlflow.log_param("max_price",max_price)
+        mlflow.log_param("with_l3_feature",with_l3_feature)
+        mlflow.log_param("columns_to_drop",", ".join(columns_to_drop))
+        mlflow.log_param("l2_csv_file",l2_csv_file)
 
-for param in rf_random.best_params_:
-    mlflow.log_param("param_"+param,rf_random.best_params_[param])
+        # Aclaración importante: tomaré solo el 20% del total de registros para entrenar los primeros modelos que me permitirán evaluar y seleccionar los mejores modelos y sus features correspondientes. El 20% es un porcentaje arbitrario que creo que es bastante representativo del total, y son bastantes registros.
 
-# MLFlow model params y metrics
-mlflow.log_metric("rmse_train",rmse_train)
-mlflow.log_metric("mae_train",mae_train)
-mlflow.log_metric("r2_train",r2_train)
-mlflow.log_metric("rmse_test",rmse_test)
-mlflow.log_metric("mae_test",mae_test)
-mlflow.log_metric("r2_test",r2_test)
+        sample = data_encoded.sample(frac=sample_frac, random_state=sample_rs)
+        if max_price is not None:
+            sample = sample[sample["price"] < max_price]
+        sample = sample.drop(columns=columns_to_drop)
 
-# MLFlow model
-# mlflow.sklearn.log_model(
-#     sk_model=rf_random,
-#     name="baseline-model-rfr"
-# )
+        x_data = sample.drop('price', axis=1)
+        y_data = sample['price']
+
+        x_data = x_data.values
+        y_data = y_data.values
+
+        x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=test_split_size, random_state=test_split_rs)
+
+        model_rfr = RandomForestRegressor(random_state=model_rs)
+
+        # Realizaré una randomized search acotada debido a que tengo muchos registros. Primero intenté hacer esto con todos los registros y con 100 iteraciones, pero resultó inviable el tiempo que estaba tardando en entrenar
+
+        random_grid = {
+            'n_estimators': [int(x) for x in np.linspace(start = 50, stop = 200, num = 5)],
+            'max_features': [1.0],
+            'max_depth': [int(x) for x in np.linspace(10, 110, num = 11)],
+            'min_samples_split': [2, 5, 10],
+            'min_samples_leaf': [1, 2, 4],
+            'bootstrap': [False] # Al tener muchos registros, creo que el remuestreo es innecesario
+        }
+
+        rf_random = RandomizedSearchCV(estimator = model_rfr, param_distributions = random_grid, scoring="neg_mean_absolute_error", n_iter = random_grid_n_iter, cv = random_grid_cv, verbose=2, random_state=random_grid_rs, n_jobs = -1)
+
+        rf_random.fit(x_train, y_train)
+
+        # Evaluación de métricas
+
+        y_train_pred = rf_random.predict(x_train)
+        y_test_pred = rf_random.predict(x_test)
+
+        def regression_metrics(y_true, y_test_pred):
+            mse  = mean_squared_error(y_true, y_test_pred)
+            rmse = np.sqrt(mse)
+            mae  = mean_absolute_error(y_true, y_test_pred)
+            r2   = r2_score(y_true, y_test_pred)
+            
+            return rmse, mae, r2
+
+        rmse_train, mae_train, r2_train = regression_metrics(y_train, y_train_pred)
+        print("Medidas en train:")
+        print("RMSE:", round(rmse_train, 2))
+        print("MAE:", round(mae_train, 2))
+        print("R²:", round(r2_train, 4))
+
+        rmse_test, mae_test, r2_test = regression_metrics(y_test, y_test_pred)
+        print("")
+        print("Medidas en test:")
+        print("RMSE:", round(rmse_test, 2))
+        print("MAE:", round(mae_test, 2))
+        print("R²:", round(r2_test, 4))
+
+        for param in rf_random.best_params_:
+            mlflow.log_param("param_"+param,rf_random.best_params_[param])
+
+        # MLFlow model params y metrics
+        mlflow.log_metric("rmse_train",rmse_train)
+        mlflow.log_metric("mae_train",mae_train)
+        mlflow.log_metric("r2_train",r2_train)
+        mlflow.log_metric("rmse_test",rmse_test)
+        mlflow.log_metric("mae_test",mae_test)
+        mlflow.log_metric("r2_test",r2_test)
+
+        # MLFlow model
+        # mlflow.sklearn.log_model(
+        #     sk_model=rf_random,
+        #     name="baseline-model-rfr"
+        # )

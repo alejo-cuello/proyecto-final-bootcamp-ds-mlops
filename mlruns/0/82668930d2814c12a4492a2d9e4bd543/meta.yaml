@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/alejo/python/proyecto-final-bootcamp-ds-mlops/mlruns/0/82668930d2814c12a4492a2d9e4bd543/artifacts
+deleted_time: 1768821553088
+end_time: 1768821167482
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 82668930d2814c12a4492a2d9e4bd543
+run_name: rfr_l2_bs_as_g_b_a_zona_norte.csv
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1768821154631
+status: 3
+tags: []
+user_id: alejo
