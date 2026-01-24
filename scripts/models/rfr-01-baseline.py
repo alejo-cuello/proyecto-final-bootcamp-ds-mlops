@@ -21,7 +21,7 @@ for l2_csv_file in l2_csv_files:
             price_by_quantile = json.load(handle)
 
         # MLFlow: Variables a setear para cada corrida del experimento
-        sample_frac = 0.2
+        sample_frac = 1
         sample_rs = 42 # rs = random_state
         test_split_size = 0.3
         test_split_rs = 42
@@ -29,7 +29,7 @@ for l2_csv_file in l2_csv_files:
         random_grid_n_iter = 10
         random_grid_cv = 3
         random_grid_rs = 42
-        filter_price_by_quantile = "Q3" # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
+        filter_price_by_quantile = "Q3+1.5IQR" # None, "Q3", "Q3+1.5IQR": para establecer un límite para descartar outliers
         max_price = price_by_quantile[filter_price_by_quantile] if filter_price_by_quantile is not None else None
         with_l3_feature = True
         columns_to_drop = [
