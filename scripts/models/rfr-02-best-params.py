@@ -11,7 +11,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 data_path = 'data/split_by_l2'
 experiment_name = 'baseline-model-rfr'
-file_name = 'l2_bs_as_g_b_a_zona_sur.csv'
+file_name = 'l2_capital_federal.csv'
 
 runs = mlflow.search_runs(
     experiment_names=[experiment_name],
@@ -26,7 +26,7 @@ data_encoded = pd.read_csv(os.path.join(data_path, file_name), sep=',', index_co
 with open("notebooks/price_by_quantile.json", "rb") as handle:
     price_by_quantile = json.load(handle)
 
-with open("best_random_params"+file_name.removesuffix(".csv")+".txt", "w") as f:
+with open("scripts/output/best_random_params_"+file_name.removesuffix(".csv")+".txt", "w") as f:
     f.write(f'l2: {file_name}\n')
     f.write(f'run_id: {best_run[['run_id']].values[0]}\n')
     f.write(f'param_bootstrap:{best_run[['params.param_bootstrap']].values[0]}\n')

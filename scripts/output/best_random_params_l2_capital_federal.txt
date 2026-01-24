@@ -1,0 +1,8 @@
+l2: l2_capital_federal.csv
+run_id: ['57b8832c8ff843c3b84ec7e23f22fe6c']
+param_bootstrap:['False']
+param_max_depth:['110']
+param_max_features:['1.0']
+param_min_samples_leaf:['1']
+param_min_samples_split:['5']
+param_n_estimators:['87']

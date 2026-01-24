@@ -1,0 +1,8 @@
+l2: l2_bs_as_g_b_a_zona_sur.csv
+run_id: ['727c816001444bd193aa84b9b3000cf3']
+param_bootstrap:['False']
+param_max_depth:['80']
+param_max_features:['1.0']
+param_min_samples_leaf:['1']
+param_min_samples_split:['5']
+param_n_estimators:['50']
